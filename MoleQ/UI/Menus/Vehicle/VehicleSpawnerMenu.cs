@@ -79,6 +79,7 @@ public class VehicleSpawnerMenu : BaseMenu
             var vehicleDisplayName = Game.GetLocalizedString((int)vHash);
 
             if (string.IsNullOrEmpty(vehicleDisplayName)) vehicleDisplayName = vHash.ToPrettyString();
+            
             Notify.Message($"Spawned {vehicleDisplayName}");
         };
     }
