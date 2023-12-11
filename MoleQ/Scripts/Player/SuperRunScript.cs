@@ -1,5 +1,6 @@
 ﻿using System;
 using GTA;
+using MoleQ.Constants;
 using MoleQ.Enums;
 using MoleQ.Interfaces.Player;
 using MoleQ.Interfaces.Settings;
@@ -20,7 +21,7 @@ public class SuperRunScript : BaseScript
     {
         _playerService = Injector.PlayerService;
         _superRunService = Injector.SuperRunService;
-        _storageService = new StorageService("scripts/MoleQ/Settings/SuperRun.json");
+        _storageService = new StorageService($"{Path.Settings}/SuperRun.json");
         Tick += OnTick;
     }
 
