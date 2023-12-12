@@ -56,6 +56,14 @@ public class PlayerBasicsScript : BaseScript
         var infiniteStaminaKey = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.InfiniteStamina);
         if (IsKeyPressed(infiniteStaminaKey))
             _playerService.InfiniteStamina = !_playerService.InfiniteStamina;
+        
+        var infiniteBreath = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.InfiniteBreath);
+        if (IsKeyPressed(infiniteBreath))
+            _playerService.InfiniteBreath = !_playerService.InfiniteBreath;
+        
+        var superPunch = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.SuperPunch);
+        if (IsKeyPressed(superPunch))
+            _playerService.SuperPunch = !_playerService.SuperPunch;
     }
 
     protected override void SaveSettings()
@@ -73,6 +81,7 @@ public class PlayerBasicsScript : BaseScript
         _playerService.InfiniteStamina = settings.InfiniteStamina;
         _playerService.WantedLevel = settings.WantedLevel;
         _playerService.InfiniteBreath = settings.InfiniteBreath;
+        _playerService.SuperPunch = settings.SuperPunch;
     }
 
     private void OnTick(object sender, EventArgs e)

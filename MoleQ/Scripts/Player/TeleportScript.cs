@@ -26,8 +26,8 @@ public class TeleportScript : BaseScript
     {
         try
         {
-            var teleportToBlip = HotkeysService.GetValue(SectionEnum.Teleport, TeleportEnum.TeleportToMarker);
-            if (IsKeyPressed(teleportToBlip))
+            var teleportToBlipKey = HotkeysService.GetValue(SectionEnum.Teleport, TeleportEnum.TeleportToMarker);
+            if (IsKeyPressed(teleportToBlipKey))
                 TeleportToBlip(BlipSprite.Waypoint);
         }
         catch (BlipNotFoundException ex)
