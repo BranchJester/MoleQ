@@ -2,7 +2,7 @@
 
 namespace MoleQ.Settings;
 
-public class PlayerCompositeSettings
+public class PlayerSettings
 {
     public bool Invincible { get; set; }
     public bool SuperJump { get; set; }

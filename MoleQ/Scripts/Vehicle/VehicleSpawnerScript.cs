@@ -6,6 +6,7 @@ using MoleQ.Interfaces.Settings;
 using MoleQ.Interfaces.Vehicle;
 using MoleQ.ServiceInjector;
 using MoleQ.Services.Settings;
+using MoleQ.Settings;
 
 namespace MoleQ.Scripts.Vehicle;
 
@@ -57,6 +58,18 @@ public class VehicleSpawnerScript : BaseScript
 
     protected override void SaveSettings()
     {
-        _storageService.SaveSettings(_vehicleSpawnerService);
+        var vehicleSpawnerSettings = new VehicleSpawnerSettings
+        {
+            WarpInSpawned = _vehicleSpawnerService.WarpInSpawned,
+            EnginesRunning = _vehicleSpawnerService.EnginesRunning
+        };
+        _storageService.SaveSettings(vehicleSpawnerSettings);
+    }
+
+    protected override void LoadSettings()
+    {
+        var settings = _storageService.LoadSettings<VehicleSpawnerSettings>();
+        _vehicleSpawnerService.WarpInSpawned = settings.WarpInSpawned;
+        _vehicleSpawnerService.EnginesRunning = settings.EnginesRunning;
     }
 }

@@ -14,9 +14,9 @@ namespace MoleQ.Scripts.Player;
 public class PlayerBasicsScript : BaseScript
 {
     private readonly IPlayerService _playerService;
+    private readonly StorageService _storageService;
     private readonly ISuperPunchService _superPunchService;
     private readonly ISuperRunService _superRunService;
-    private readonly StorageService _storageService;
 
     public PlayerBasicsScript()
     {
@@ -66,7 +66,7 @@ public class PlayerBasicsScript : BaseScript
 
     protected override void SaveSettings()
     {
-        var playerCompositeSettings = new PlayerCompositeSettings
+        var playerSettings = new PlayerSettings
         {
             Invincible = _playerService.Invincible,
             SuperJump = _playerService.SuperJump,
@@ -78,12 +78,12 @@ public class PlayerBasicsScript : BaseScript
             SuperPunch = _superPunchService.SuperPunch,
             SuperRun = _superRunService.SuperRun
         };
-        _storageService.SaveSettings(playerCompositeSettings);
+        _storageService.SaveSettings(playerSettings);
     }
 
     protected override void LoadSettings()
     {
-        var settings = _storageService.LoadSettings<PlayerCompositeSettings>();
+        var settings = _storageService.LoadSettings<PlayerSettings>();
         _playerService.Invincible = settings.Invincible;
         _playerService.SuperJump = settings.SuperJump;
         _playerService.LockWantedLevel = settings.LockWantedLevel;

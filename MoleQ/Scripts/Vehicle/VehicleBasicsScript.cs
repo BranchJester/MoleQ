@@ -8,7 +8,7 @@ using MoleQ.Interfaces.Settings;
 using MoleQ.Interfaces.Vehicle;
 using MoleQ.ServiceInjector;
 using MoleQ.Services.Settings;
-using MoleQ.Services.Vehicle;
+using MoleQ.Settings;
 using MoleQ.UI.Notification;
 
 namespace MoleQ.Scripts.Vehicle;
@@ -29,12 +29,16 @@ public class VehicleBasicsScript : BaseScript
 
     protected override void SaveSettings()
     {
-        _storageService.SaveSettings(_vehicleService);
+        var vehicleSettings = new VehicleSettings
+        {
+            Indestructible = _vehicleService.Indestructible
+        };
+        _storageService.SaveSettings(vehicleSettings);
     }
 
     protected override void LoadSettings()
     {
-        var settings = _storageService.LoadSettings<VehicleService>();
+        var settings = _storageService.LoadSettings<VehicleSettings>();
         _vehicleService.Indestructible = settings.Indestructible;
     }
 

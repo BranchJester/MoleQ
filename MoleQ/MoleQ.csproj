@@ -64,7 +64,7 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Settings\PlayerCompositeSettings.cs"/>
+        <Compile Include="Settings\PlayerSettings.cs"/>
         <Compile Include="Constants\Path.cs"/>
         <Compile Include="Enums\SectionEnum.cs"/>
         <Compile Include="Enums\MenuEnum.cs"/>
@@ -107,6 +107,8 @@
         <Compile Include="Services\Vehicle\VehicleService.cs"/>
         <Compile Include="Services\Vehicle\VehicleSpawnerService.cs"/>
         <Compile Include="Services\Weapon\WeaponService.cs"/>
+        <Compile Include="Settings\VehicleSettings.cs"/>
+        <Compile Include="Settings\VehicleSpawnerSettings.cs"/>
         <Compile Include="StateHandlers\IStateHandler.cs"/>
         <Compile Include="StateHandlers\PlayerStateHandler.cs"/>
         <Compile Include="StateHandlers\VehicleStateHandler.cs"/>
