@@ -1,6 +1,5 @@
 ﻿using System;
 using MoleQ.Interfaces.Vehicle;
-using Newtonsoft.Json;
 
 namespace MoleQ.Services.Vehicle;
 
@@ -19,7 +18,7 @@ public class VehicleService : IVehicleService
         }
     }
 
-    [JsonIgnore] public GTA.Vehicle CurrentVehicle { get; set; }
+    public GTA.Vehicle CurrentVehicle { get; set; }
 
     public event Action<bool> IndestructibleChanged;
 

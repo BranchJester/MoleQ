@@ -11,7 +11,7 @@ public interface ISuperRunService
     /// <summary>
     ///     A super speed value for the player.
     /// </summary>
-    PlayerSuperSpeedEnum PlayerSuperSpeed { get; set; }
+    PlayerSuperSpeedEnum SuperRun { get; set; }
 
     event Action<PlayerSuperSpeedEnum> PlayerSuperSpeedChanged;
 }

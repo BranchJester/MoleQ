@@ -48,8 +48,6 @@ public interface IPlayerService
     /// </summary>
     bool InfiniteBreath { get; set; }
 
-    bool SuperPunch { get; set; }
-
     event Action FixPlayerActivated;
     event Action<bool> InvincibleChanged;
     event Action<int> WantedLevelChanged;
@@ -57,7 +55,6 @@ public interface IPlayerService
     event Action<bool> SuperJumpChanged;
     event Action<bool> InfiniteStaminaChanged;
     event Action<bool> InfiniteBreathChanged;
-    event Action<bool> SuperPunchChanged;
     event Action<PedHash> CharacterChanged;
 
     /// <summary>

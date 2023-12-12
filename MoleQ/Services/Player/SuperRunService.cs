@@ -8,7 +8,7 @@ public class SuperRunService : ISuperRunService
 {
     private PlayerSuperSpeedEnum _playerSuperSpeed;
 
-    public PlayerSuperSpeedEnum PlayerSuperSpeed
+    public PlayerSuperSpeedEnum SuperRun
     {
         get => _playerSuperSpeed;
         set

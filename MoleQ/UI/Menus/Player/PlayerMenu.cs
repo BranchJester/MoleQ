@@ -13,12 +13,15 @@ namespace MoleQ.UI.Menus.Player;
 public class PlayerMenu : BaseMenu
 {
     private readonly IPlayerService _playerService;
+    private readonly ISuperPunchService _superPunchService;
     private readonly ISuperRunService _superRunService;
 
-    public PlayerMenu(string menuName, IPlayerService playerService, ISuperRunService superRunService) : base(menuName)
+    public PlayerMenu(string menuName, IPlayerService playerService, ISuperRunService superRunService,
+        ISuperPunchService superPunchService) : base(menuName)
     {
         _playerService = playerService;
         _superRunService = superRunService;
+        _superPunchService = superPunchService;
     }
 
     protected override void InitializeItems()
@@ -38,9 +41,9 @@ public class PlayerMenu : BaseMenu
     private void SuperPunch()
     {
         var superPunch = new CustomNativeCheckboxItem(PlayerEnum.SuperPunch,
-            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.SuperPunch), _playerService.SuperPunch);
-        superPunch.CheckboxChanged += (_, _) => { _playerService.SuperPunch = superPunch.Checked; };
-        _playerService.SuperPunchChanged += state =>
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.SuperPunch), _superPunchService.SuperPunch);
+        superPunch.CheckboxChanged += (_, _) => { _superPunchService.SuperPunch = superPunch.Checked; };
+        _superPunchService.SuperPunchChanged += state =>
         {
             superPunch.Checked = state;
             Notify.CheckboxMessage("Super Punch", state);
@@ -157,7 +160,7 @@ public class PlayerMenu : BaseMenu
         {
             superRun.Description =
                 $"{PlayerEnum.SuperRun.GetDescription()}\n\n{superRun.SelectedItem.GetDescription()}";
-            _superRunService.PlayerSuperSpeed = superRun.SelectedItem;
+            _superRunService.SuperRun = superRun.SelectedItem;
         };
         _superRunService.PlayerSuperSpeedChanged += speed =>
         {

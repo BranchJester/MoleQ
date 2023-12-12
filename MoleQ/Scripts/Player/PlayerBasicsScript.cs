@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Windows.Forms;
 using GTA;
-using GTA.Math;
 using GTA.Native;
 using MoleQ.Constants;
 using MoleQ.Enums;
 using MoleQ.Interfaces.Player;
 using MoleQ.ServiceInjector;
-using MoleQ.Services.Player;
 using MoleQ.Services.Settings;
+using MoleQ.Settings;
 
 namespace MoleQ.Scripts.Player;
 
@@ -17,10 +15,14 @@ public class PlayerBasicsScript : BaseScript
 {
     private readonly IPlayerService _playerService;
     private readonly StorageService _storageService;
+    private readonly ISuperPunchService _superPunchService;
+    private readonly ISuperRunService _superRunService;
 
     public PlayerBasicsScript()
     {
         _playerService = Injector.PlayerService;
+        _superPunchService = Injector.SuperPunchService;
+        _superRunService = Injector.SuperRunService;
         _storageService = new StorageService($"{Path.Settings}/Player.json");
         _playerService.FixPlayerActivated += FixPlayer;
         _playerService.WantedLevelChanged += ChangeWantedLevel;
@@ -56,24 +58,32 @@ public class PlayerBasicsScript : BaseScript
         var infiniteStaminaKey = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.InfiniteStamina);
         if (IsKeyPressed(infiniteStaminaKey))
             _playerService.InfiniteStamina = !_playerService.InfiniteStamina;
-        
+
         var infiniteBreath = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.InfiniteBreath);
         if (IsKeyPressed(infiniteBreath))
             _playerService.InfiniteBreath = !_playerService.InfiniteBreath;
-        
-        var superPunch = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.SuperPunch);
-        if (IsKeyPressed(superPunch))
-            _playerService.SuperPunch = !_playerService.SuperPunch;
     }
 
     protected override void SaveSettings()
     {
-        _storageService.SaveSettings(_playerService);
+        var playerSettings = new PlayerSettings
+        {
+            Invincible = _playerService.Invincible,
+            SuperJump = _playerService.SuperJump,
+            LockWantedLevel = _playerService.LockWantedLevel,
+            MaxWantedLevel = _playerService.MaxWantedLevel,
+            InfiniteStamina = _playerService.InfiniteStamina,
+            WantedLevel = _playerService.WantedLevel,
+            InfiniteBreath = _playerService.InfiniteBreath,
+            SuperPunch = _superPunchService.SuperPunch,
+            SuperRun = _superRunService.SuperRun
+        };
+        _storageService.SaveSettings(playerSettings);
     }
 
     protected override void LoadSettings()
     {
-        var settings = _storageService.LoadSettings<PlayerService>();
+        var settings = _storageService.LoadSettings<PlayerSettings>();
         _playerService.Invincible = settings.Invincible;
         _playerService.SuperJump = settings.SuperJump;
         _playerService.LockWantedLevel = settings.LockWantedLevel;
@@ -81,7 +91,7 @@ public class PlayerBasicsScript : BaseScript
         _playerService.InfiniteStamina = settings.InfiniteStamina;
         _playerService.WantedLevel = settings.WantedLevel;
         _playerService.InfiniteBreath = settings.InfiniteBreath;
-        _playerService.SuperPunch = settings.SuperPunch;
+        _superPunchService.SuperPunch = settings.SuperPunch;
     }
 
     private void OnTick(object sender, EventArgs e)
@@ -90,23 +100,6 @@ public class PlayerBasicsScript : BaseScript
         SuperJump();
         LockWantedLevel();
         InfiniteStamina();
-        SuperPunch();
-    }
-
-    private void SuperPunch()
-    {
-        if (!_playerService.SuperPunch) return;
-        if (!Game.Player.Character.IsInMeleeCombat) return;
-
-        var nearbyEntities = World.GetNearbyEntities(Game.Player.Character.Position, 10.0f)
-            .Where(e => e != Game.Player.Character);
-        var firstEntity = nearbyEntities.OrderBy(e => Vector3.Distance(Game.Player.Character.Position, e.Position))
-            .FirstOrDefault(e =>
-                e.HasBeenDamagedBy(Game.Player.Character) && e.HasBeenDamagedBy(WeaponHash.Unarmed));
-
-
-        if (firstEntity == null) return;
-        firstEntity.ApplyForce(Game.Player.Character.ForwardVector * 10000.0f);
     }
 
     private void InfiniteStamina()
