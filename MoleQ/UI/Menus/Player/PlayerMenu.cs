@@ -32,6 +32,20 @@ public class PlayerMenu : BaseMenu
         SuperRun();
         InfiniteStamina();
         InfiniteBreath();
+        SuperPunch();
+    }
+
+    private void SuperPunch()
+    {
+        var superPunch = new CustomNativeCheckboxItem(PlayerEnum.SuperPunch,
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.SuperPunch), _playerService.SuperPunch);
+        superPunch.CheckboxChanged += (_, _) => { _playerService.SuperPunch = superPunch.Checked; };
+        _playerService.SuperPunchChanged += state =>
+        {
+            superPunch.Checked = state;
+            Notify.CheckboxMessage("Super Punch", state);
+        };
+        Add(superPunch);
     }
 
     private void InfiniteBreath()

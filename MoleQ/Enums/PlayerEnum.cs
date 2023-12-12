@@ -24,7 +24,10 @@ public enum PlayerEnum
     SuperRun,
 
     [Description("You can no longer drown in water.")]
-    InfiniteBreath
+    InfiniteBreath,
+
+    [Description("Become one-punch man and punch entities into oblivion.")]
+    SuperPunch
 }
 
 public enum PlayerSuperSpeedEnum

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using GTA;
+using GTA.Math;
 using GTA.Native;
 using MoleQ.Constants;
 using MoleQ.Enums;
@@ -79,6 +81,23 @@ public class PlayerBasicsScript : BaseScript
         SuperJump();
         LockWantedLevel();
         InfiniteStamina();
+        SuperPunch();
+    }
+
+    private void SuperPunch()
+    {
+        if (!_playerService.SuperPunch) return;
+        if (!Game.Player.Character.IsInMeleeCombat) return;
+
+        var nearbyEntities = World.GetNearbyEntities(Game.Player.Character.Position, 10.0f)
+            .Where(e => e != Game.Player.Character);
+        var firstEntity = nearbyEntities.OrderBy(e => Vector3.Distance(Game.Player.Character.Position, e.Position))
+            .FirstOrDefault(e =>
+                e.HasBeenDamagedBy(Game.Player.Character) && e.HasBeenDamagedBy(WeaponHash.Unarmed));
+
+
+        if (firstEntity == null) return;
+        firstEntity.ApplyForce(Game.Player.Character.ForwardVector * 10000.0f);
     }
 
     private void InfiniteStamina()
