@@ -14,6 +14,7 @@ public class VehicleSpawnerService : IVehicleSpawnerService
         get => _enginesRunning;
         set
         {
+            if (_enginesRunning == value) return;
             _enginesRunning = value;
             EnginesRunningChanged?.Invoke(value);
         }
@@ -28,6 +29,7 @@ public class VehicleSpawnerService : IVehicleSpawnerService
         get => _warpInSpawned;
         set
         {
+            if (_warpInSpawned == value) return;
             _warpInSpawned = value;
             WarpInSpawnedChanged?.Invoke(value);
         }

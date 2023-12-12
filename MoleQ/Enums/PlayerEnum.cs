@@ -21,7 +21,13 @@ public enum PlayerEnum
     SuperJump,
 
     [Description("Select a desired super-speed value.")]
-    SuperRun
+    SuperRun,
+
+    [Description("You can no longer drown in water.")]
+    InfiniteBreath,
+
+    [Description("Become one-punch man and punch entities into oblivion.")]
+    SuperPunch
 }
 
 public enum PlayerSuperSpeedEnum

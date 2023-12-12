@@ -42,7 +42,7 @@ public class VehicleSpawnerScript : BaseScript
     {
         var vehicle = World.CreateVehicle(vehicleHash,
             Game.Player.Character.Position + Game.Player.Character.ForwardVector * 5.0f,
-            Game.Player.Character.Heading * -45.0f);
+            Game.Player.Character.Heading * -90.0f);
         vehicle.PlaceOnGround();
         vehicle.IsPersistent = true;
 

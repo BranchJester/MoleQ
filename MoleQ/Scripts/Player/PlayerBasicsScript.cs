@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using GTA;
+using GTA.Math;
 using GTA.Native;
 using MoleQ.Constants;
 using MoleQ.Enums;
@@ -22,9 +24,15 @@ public class PlayerBasicsScript : BaseScript
         _storageService = new StorageService($"{Path.Settings}/Player.json");
         _playerService.FixPlayerActivated += FixPlayer;
         _playerService.WantedLevelChanged += ChangeWantedLevel;
+        _playerService.InfiniteBreathChanged += InfiniteBreath;
 
         Tick += OnTick;
         KeyDown += OnKeyDown;
+    }
+
+    private void InfiniteBreath(bool infiniteBreath)
+    {
+        Game.Player.Character.DrownsInWater = !infiniteBreath;
     }
 
     private void OnKeyDown(object sender, KeyEventArgs e)
@@ -48,6 +56,14 @@ public class PlayerBasicsScript : BaseScript
         var infiniteStaminaKey = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.InfiniteStamina);
         if (IsKeyPressed(infiniteStaminaKey))
             _playerService.InfiniteStamina = !_playerService.InfiniteStamina;
+        
+        var infiniteBreath = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.InfiniteBreath);
+        if (IsKeyPressed(infiniteBreath))
+            _playerService.InfiniteBreath = !_playerService.InfiniteBreath;
+        
+        var superPunch = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.SuperPunch);
+        if (IsKeyPressed(superPunch))
+            _playerService.SuperPunch = !_playerService.SuperPunch;
     }
 
     protected override void SaveSettings()
@@ -64,6 +80,8 @@ public class PlayerBasicsScript : BaseScript
         _playerService.MaxWantedLevel = settings.MaxWantedLevel;
         _playerService.InfiniteStamina = settings.InfiniteStamina;
         _playerService.WantedLevel = settings.WantedLevel;
+        _playerService.InfiniteBreath = settings.InfiniteBreath;
+        _playerService.SuperPunch = settings.SuperPunch;
     }
 
     private void OnTick(object sender, EventArgs e)
@@ -72,6 +90,23 @@ public class PlayerBasicsScript : BaseScript
         SuperJump();
         LockWantedLevel();
         InfiniteStamina();
+        SuperPunch();
+    }
+
+    private void SuperPunch()
+    {
+        if (!_playerService.SuperPunch) return;
+        if (!Game.Player.Character.IsInMeleeCombat) return;
+
+        var nearbyEntities = World.GetNearbyEntities(Game.Player.Character.Position, 10.0f)
+            .Where(e => e != Game.Player.Character);
+        var firstEntity = nearbyEntities.OrderBy(e => Vector3.Distance(Game.Player.Character.Position, e.Position))
+            .FirstOrDefault(e =>
+                e.HasBeenDamagedBy(Game.Player.Character) && e.HasBeenDamagedBy(WeaponHash.Unarmed));
+
+
+        if (firstEntity == null) return;
+        firstEntity.ApplyForce(Game.Player.Character.ForwardVector * 10000.0f);
     }
 
     private void InfiniteStamina()

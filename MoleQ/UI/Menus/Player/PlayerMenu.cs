@@ -31,6 +31,35 @@ public class PlayerMenu : BaseMenu
         SuperJump();
         SuperRun();
         InfiniteStamina();
+        InfiniteBreath();
+        SuperPunch();
+    }
+
+    private void SuperPunch()
+    {
+        var superPunch = new CustomNativeCheckboxItem(PlayerEnum.SuperPunch,
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.SuperPunch), _playerService.SuperPunch);
+        superPunch.CheckboxChanged += (_, _) => { _playerService.SuperPunch = superPunch.Checked; };
+        _playerService.SuperPunchChanged += state =>
+        {
+            superPunch.Checked = state;
+            Notify.CheckboxMessage("Super Punch", state);
+        };
+        Add(superPunch);
+    }
+
+    private void InfiniteBreath()
+    {
+        var infiniteBreath = new CustomNativeCheckboxItem(PlayerEnum.InfiniteBreath,
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteBreath),
+            _playerService.InfiniteBreath);
+        infiniteBreath.CheckboxChanged += (_, _) => { _playerService.InfiniteBreath = infiniteBreath.Checked; };
+        _playerService.InfiniteBreathChanged += state =>
+        {
+            infiniteBreath.Checked = state;
+            Notify.CheckboxMessage("Infinite Breath", state);
+        };
+        Add(infiniteBreath);
     }
 
     private void FixPlayer()
