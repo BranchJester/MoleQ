@@ -13,6 +13,7 @@ public class SuperRunService : ISuperRunService
         get => _playerSuperSpeed;
         set
         {
+            if (_playerSuperSpeed == value) return;
             _playerSuperSpeed = value;
             PlayerSuperSpeedChanged?.Invoke(value);
         }

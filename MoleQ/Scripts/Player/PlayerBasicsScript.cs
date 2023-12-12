@@ -22,9 +22,15 @@ public class PlayerBasicsScript : BaseScript
         _storageService = new StorageService($"{Path.Settings}/Player.json");
         _playerService.FixPlayerActivated += FixPlayer;
         _playerService.WantedLevelChanged += ChangeWantedLevel;
+        _playerService.InfiniteBreathChanged += InfiniteBreath;
 
         Tick += OnTick;
         KeyDown += OnKeyDown;
+    }
+
+    private void InfiniteBreath(bool infiniteBreath)
+    {
+        Game.Player.Character.DrownsInWater = !infiniteBreath;
     }
 
     private void OnKeyDown(object sender, KeyEventArgs e)
@@ -64,6 +70,7 @@ public class PlayerBasicsScript : BaseScript
         _playerService.MaxWantedLevel = settings.MaxWantedLevel;
         _playerService.InfiniteStamina = settings.InfiniteStamina;
         _playerService.WantedLevel = settings.WantedLevel;
+        _playerService.InfiniteBreath = settings.InfiniteBreath;
     }
 
     private void OnTick(object sender, EventArgs e)

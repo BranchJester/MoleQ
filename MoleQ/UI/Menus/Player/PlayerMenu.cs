@@ -31,6 +31,21 @@ public class PlayerMenu : BaseMenu
         SuperJump();
         SuperRun();
         InfiniteStamina();
+        InfiniteBreath();
+    }
+
+    private void InfiniteBreath()
+    {
+        var infiniteBreath = new CustomNativeCheckboxItem(PlayerEnum.InfiniteBreath,
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteBreath),
+            _playerService.InfiniteBreath);
+        infiniteBreath.CheckboxChanged += (_, _) => { _playerService.InfiniteBreath = infiniteBreath.Checked; };
+        _playerService.InfiniteBreathChanged += state =>
+        {
+            infiniteBreath.Checked = state;
+            Notify.CheckboxMessage("Infinite Breath", state);
+        };
+        Add(infiniteBreath);
     }
 
     private void FixPlayer()

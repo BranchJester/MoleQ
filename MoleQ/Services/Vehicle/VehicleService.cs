@@ -13,6 +13,7 @@ public class VehicleService : IVehicleService
         get => _indestructible;
         set
         {
+            if (_indestructible == value) return;
             _indestructible = value;
             IndestructibleChanged?.Invoke(value);
         }

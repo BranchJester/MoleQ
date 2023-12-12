@@ -43,12 +43,18 @@ public interface IPlayerService
     /// </summary>
     Ped Character { get; set; }
 
+    /// <summary>
+    ///     The player can no longer drown in water.
+    /// </summary>
+    bool InfiniteBreath { get; set; }
+
     event Action FixPlayerActivated;
     event Action<bool> InvincibleChanged;
     event Action<int> WantedLevelChanged;
     event Action<bool> LockWantedLevelChanged;
     event Action<bool> SuperJumpChanged;
     event Action<bool> InfiniteStaminaChanged;
+    event Action<bool> InfiniteBreathChanged;
     event Action<PedHash> CharacterChanged;
 
     /// <summary>
