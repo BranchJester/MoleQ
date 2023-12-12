@@ -26,11 +26,14 @@ public static class Injector
 
     public static ISuperRunService SuperRunService { get; private set; }
 
+    public static ISuperPunchService SuperPunchService { get; private set; }
     public static IVehicleService VehicleService { get; private set; }
     public static IVehicleSpawnerService VehicleSpawnerService { get; private set; }
     public static IWeaponService WeaponService { get; private set; }
 
+
     // Repositories
+
 
     // Menu manager
     public static MenuManager MenuManager { get; private set; }
@@ -48,6 +51,7 @@ public static class Injector
         PlayerService = new PlayerService();
         TeleportService = new TeleportService();
         SuperRunService = new SuperRunService();
+        SuperPunchService = new SuperPunchService();
 
         // Vehicle
         VehicleService = new VehicleService();

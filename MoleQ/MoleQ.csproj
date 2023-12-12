@@ -64,6 +64,7 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Settings\PlayerCompositeSettings.cs"/>
         <Compile Include="Constants\Path.cs"/>
         <Compile Include="Enums\SectionEnum.cs"/>
         <Compile Include="Enums\MenuEnum.cs"/>
@@ -76,6 +77,7 @@
         <Compile Include="Exceptions\VehicleNotFoundException.cs"/>
         <Compile Include="Extensions\EnumExtensions.cs"/>
         <Compile Include="Interfaces\Player\IPlayerService.cs"/>
+        <Compile Include="Interfaces\Player\ISuperPunchService.cs"/>
         <Compile Include="Interfaces\Player\ISuperRunService.cs"/>
         <Compile Include="Interfaces\Player\ITeleportService.cs"/>
         <Compile Include="Interfaces\Settings\IHotkeyService.cs"/>
@@ -88,6 +90,7 @@
         <Compile Include="Scripts\KeybindingChangeScript.cs"/>
         <Compile Include="Scripts\Main.cs"/>
         <Compile Include="Scripts\Player\PlayerBasicsScript.cs"/>
+        <Compile Include="Scripts\Player\SuperPunchScript.cs"/>
         <Compile Include="Scripts\Player\SuperRunScript.cs"/>
         <Compile Include="Scripts\Player\TeleportScript.cs"/>
         <Compile Include="Scripts\State\StateHandlerScript.cs"/>
@@ -96,6 +99,7 @@
         <Compile Include="Scripts\Weapon\WeaponBasicsScript.cs"/>
         <Compile Include="ServiceInjector\Injector.cs"/>
         <Compile Include="Services\Player\PlayerService.cs"/>
+        <Compile Include="Services\Player\SuperPunchService.cs"/>
         <Compile Include="Services\Player\SuperRunService.cs"/>
         <Compile Include="Services\Player\TeleportService.cs"/>
         <Compile Include="Services\Settings\HotkeysService.cs"/>

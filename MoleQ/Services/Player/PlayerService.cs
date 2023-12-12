@@ -1,7 +1,6 @@
 ﻿using System;
 using GTA;
 using MoleQ.Interfaces.Player;
-using Newtonsoft.Json;
 
 namespace MoleQ.Services.Player;
 
@@ -13,7 +12,6 @@ public class PlayerService : IPlayerService
     private bool _invincible;
     private bool _lockWantedLevel;
     private bool _superJump;
-    private bool _superPunch;
     private int _wantedLevel;
 
     #region Properties
@@ -75,7 +73,6 @@ public class PlayerService : IPlayerService
         }
     }
 
-    [JsonIgnore]
     public Ped Character
     {
         get => _character;
@@ -98,17 +95,6 @@ public class PlayerService : IPlayerService
         }
     }
 
-    public bool SuperPunch
-    {
-        get => _superPunch;
-        set
-        {
-            if (_superPunch == value) return;
-            _superPunch = value;
-            SuperPunchChanged?.Invoke(value);
-        }
-    }
-
     #endregion
 
     #region Events
@@ -119,7 +105,6 @@ public class PlayerService : IPlayerService
     public event Action<bool> LockWantedLevelChanged;
     public event Action<bool> InfiniteStaminaChanged;
     public event Action<bool> InfiniteBreathChanged;
-    public event Action<bool> SuperPunchChanged;
     public event Action<PedHash> CharacterChanged;
     public event Action<bool> SuperJumpChanged;
 

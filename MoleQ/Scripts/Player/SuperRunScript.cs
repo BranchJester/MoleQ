@@ -32,7 +32,7 @@ public class SuperRunScript : BaseScript
 
     private void SuperRun()
     {
-        switch (_superRunService.PlayerSuperSpeed)
+        switch (_superRunService.SuperRun)
         {
             case PlayerSuperSpeedEnum.Normal:
                 SetRunSpeedMultiplier(1.00f);
@@ -60,7 +60,7 @@ public class SuperRunScript : BaseScript
     protected override void LoadSettings()
     {
         var settings = _storageService.LoadSettings<SuperRunService>();
-        _superRunService.PlayerSuperSpeed = settings.PlayerSuperSpeed;
+        _superRunService.SuperRun = settings.SuperRun;
     }
 
     private void Flash()

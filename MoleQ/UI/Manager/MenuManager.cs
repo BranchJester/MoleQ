@@ -14,7 +14,8 @@ public class MenuManager
     {
         MenuPool = new ObjectPool();
         MainMenu = new MainMenu("Main");
-        PlayerMenu = new PlayerMenu("Player", Injector.PlayerService, Injector.SuperRunService);
+        PlayerMenu = new PlayerMenu("Player", Injector.PlayerService, Injector.SuperRunService,
+            Injector.SuperPunchService);
         VehicleMenu = new VehicleMenu("Vehicle", Injector.VehicleService);
         VehicleSpawnerMenu = new VehicleSpawnerMenu("Vehicle Spawner", Injector.VehicleSpawnerService);
         TeleportMenu = new TeleportMenu("Teleport", Injector.TeleportService);
