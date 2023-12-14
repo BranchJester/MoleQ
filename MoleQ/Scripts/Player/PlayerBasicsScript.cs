@@ -62,6 +62,10 @@ public class PlayerBasicsScript : BaseScript
         var infiniteBreath = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.InfiniteBreath);
         if (IsKeyPressed(infiniteBreath))
             _playerService.InfiniteBreath = !_playerService.InfiniteBreath;
+        
+        var infiniteSpecialAbilityKey = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.InfiniteSpecialAbility);
+        if (IsKeyPressed(infiniteSpecialAbilityKey))
+            _playerService.InfiniteSpecialAbility = !_playerService.InfiniteSpecialAbility;
     }
 
     protected override void SaveSettings()
@@ -75,8 +79,10 @@ public class PlayerBasicsScript : BaseScript
             InfiniteStamina = _playerService.InfiniteStamina,
             WantedLevel = _playerService.WantedLevel,
             InfiniteBreath = _playerService.InfiniteBreath,
+            InfiniteSpecialAbility = _playerService.InfiniteSpecialAbility,
             SuperPunch = _superPunchService.SuperPunch,
             SuperRun = _superRunService.SuperRun
+            
         };
         _storageService.SaveSettings(playerSettings);
     }
@@ -91,6 +97,7 @@ public class PlayerBasicsScript : BaseScript
         _playerService.InfiniteStamina = settings.InfiniteStamina;
         _playerService.WantedLevel = settings.WantedLevel;
         _playerService.InfiniteBreath = settings.InfiniteBreath;
+        _playerService.InfiniteSpecialAbility = settings.InfiniteSpecialAbility;
         _superPunchService.SuperPunch = settings.SuperPunch;
     }
 
@@ -100,6 +107,13 @@ public class PlayerBasicsScript : BaseScript
         SuperJump();
         LockWantedLevel();
         InfiniteStamina();
+        InfiniteSpecialAbility();
+    }
+
+    private void InfiniteSpecialAbility()
+    {
+        if (_playerService.InfiniteSpecialAbility && Game.Player.IsSpecialAbilityActive)
+            Game.Player.RefillSpecialAbility();
     }
 
     private void InfiniteStamina()

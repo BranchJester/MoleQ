@@ -48,6 +48,11 @@ public interface IPlayerService
     /// </summary>
     bool InfiniteBreath { get; set; }
 
+    /// <summary>
+    ///     The player can use their special ability infinitely.
+    /// </summary>
+    bool InfiniteSpecialAbility { get; set; }
+
     event Action FixPlayerActivated;
     event Action<bool> InvincibleChanged;
     event Action<int> WantedLevelChanged;
@@ -55,6 +60,7 @@ public interface IPlayerService
     event Action<bool> SuperJumpChanged;
     event Action<bool> InfiniteStaminaChanged;
     event Action<bool> InfiniteBreathChanged;
+    event Action<bool> InfiniteSpecialAbilityChanged;
     event Action<PedHash> CharacterChanged;
 
     /// <summary>

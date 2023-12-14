@@ -27,7 +27,10 @@ public enum PlayerEnum
     InfiniteBreath,
 
     [Description("Become one-punch man and punch entities into oblivion.")]
-    SuperPunch
+    SuperPunch,
+
+    [Description("Use your special ability infinitely.")]
+    InfiniteSpecialAbility
 }
 
 public enum PlayerSuperSpeedEnum

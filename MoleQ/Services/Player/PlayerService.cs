@@ -8,6 +8,7 @@ public class PlayerService : IPlayerService
 {
     private Ped _character;
     private bool _infiniteBreath;
+    private bool _infiniteSpecialAbility;
     private bool _infiniteStamina;
     private bool _invincible;
     private bool _lockWantedLevel;
@@ -95,6 +96,17 @@ public class PlayerService : IPlayerService
         }
     }
 
+    public bool InfiniteSpecialAbility
+    {
+        get => _infiniteSpecialAbility;
+        set
+        {
+            if (_infiniteSpecialAbility == value) return;
+            _infiniteSpecialAbility = value;
+            InfiniteSpecialAbilityChanged?.Invoke(value);
+        }
+    }
+
     #endregion
 
     #region Events
@@ -105,6 +117,7 @@ public class PlayerService : IPlayerService
     public event Action<bool> LockWantedLevelChanged;
     public event Action<bool> InfiniteStaminaChanged;
     public event Action<bool> InfiniteBreathChanged;
+    public event Action<bool> InfiniteSpecialAbilityChanged;
     public event Action<PedHash> CharacterChanged;
     public event Action<bool> SuperJumpChanged;
 

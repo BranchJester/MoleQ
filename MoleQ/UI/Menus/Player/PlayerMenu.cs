@@ -31,11 +31,29 @@ public class PlayerMenu : BaseMenu
         WantedLevel();
         LockWantedLevel();
         Invincible();
-        SuperJump();
-        SuperRun();
         InfiniteStamina();
         InfiniteBreath();
+        InfiniteSpecialAbility();
+        SuperJump();
+        SuperRun();
         SuperPunch();
+    }
+
+    private void InfiniteSpecialAbility()
+    {
+        var infiniteSpecialAbility = new CustomNativeCheckboxItem(PlayerEnum.InfiniteSpecialAbility,
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteSpecialAbility),
+            _playerService.InfiniteSpecialAbility);
+        infiniteSpecialAbility.CheckboxChanged += (_, _) =>
+        {
+            _playerService.InfiniteSpecialAbility = infiniteSpecialAbility.Checked;
+        };
+        _playerService.InfiniteSpecialAbilityChanged += state =>
+        {
+            infiniteSpecialAbility.Checked = state;
+            Notify.CheckboxMessage("Infinite Special Ability", state);
+        };
+        Add(infiniteSpecialAbility);
     }
 
     private void SuperPunch()

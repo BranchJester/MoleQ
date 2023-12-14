@@ -11,6 +11,7 @@ public class PlayerSettings
     public int MaxWantedLevel { get; set; }
     public bool InfiniteStamina { get; set; }
     public bool InfiniteBreath { get; set; }
+    public bool InfiniteSpecialAbility { get; set; }
     public bool SuperPunch { get; set; }
     public PlayerSuperSpeedEnum SuperRun { get; set; }
 }

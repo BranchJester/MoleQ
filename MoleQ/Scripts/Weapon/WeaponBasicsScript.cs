@@ -30,7 +30,8 @@ public class WeaponBasicsScript : BaseScript
     {
         foreach (WeaponHash weaponHash in Enum.GetValues(typeof(WeaponHash)))
         {
-            Game.Player.Character.Weapons.Give(weaponHash, 9999, true, true);
+            Game.Player.Character.Weapons.Give(weaponHash, 0, true, true);
+            Game.Player.Character.Weapons.Current.Ammo = Game.Player.Character.Weapons.Current.MaxAmmo;
         }
     }
 
