@@ -18,7 +18,7 @@ public class Main : BaseScript
         _mainMenu = Injector.MenuManager.MainMenu;
 
         // Invoke the initialize method to initialize all services and repositories.
-        // When this is called, all services and repositories are initialized and the menu manager is ready to be used.
+        // When this is called, all services and repositories are initialized.
         Injector.InvokeInitialize();
 
         Tick += OnTick;

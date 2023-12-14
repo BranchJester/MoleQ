@@ -11,6 +11,13 @@
         <Copy SourceFiles="$(TargetDir)$(TargetName).dll" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\MoleQ"/>
         <Copy SourceFiles="$(TargetDir)Newtonsoft.Json.dll" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts"/>
         <Copy SourceFiles="C:\Datamatiker\GTA\MoleQ\MoleQ\hotkeys.ini" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\MoleQ"/>
+
+        <Exec Command="if not exist &quot;C:\Program Files (x86)\GTA - Backup\scripts\MoleQQ&quot; mkdir &quot;C:\Program Files (x86)\GTA - Backup\scripts\MoleQ&quot;" ContinueOnError="true"/>
+
+        <!-- Copy the .dll file to the new directory -->
+        <Copy SourceFiles="$(TargetDir)$(TargetName).dll" DestinationFolder="C:\Program Files (x86)\GTA - Backup\scripts\MoleQ"/>
+        <Copy SourceFiles="$(TargetDir)Newtonsoft.Json.dll" DestinationFolder="C:\Program Files (x86)\GTA - Backup\scripts"/>
+        <Copy SourceFiles="C:\Datamatiker\GTA\MoleQ\MoleQ\hotkeys.ini" DestinationFolder="C:\Program Files (x86)\GTA - Backup\scripts\MoleQ"/>
     </Target>
 
 
