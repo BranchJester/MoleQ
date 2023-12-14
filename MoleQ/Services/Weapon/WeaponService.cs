@@ -1,14 +1,14 @@
 ﻿using System;
 using MoleQ.Interfaces.Weapon;
-using Newtonsoft.Json;
 
 namespace MoleQ.Services.Weapon;
 
 public class WeaponService : IWeaponService
 {
     private GTA.Weapon _currentWeapon;
+    private bool _infiniteAmmo;
+    private bool _noReload;
 
-    [JsonIgnore]
     public GTA.Weapon CurrentWeapon
     {
         get => _currentWeapon;
@@ -19,9 +19,33 @@ public class WeaponService : IWeaponService
         }
     }
 
+    public bool InfiniteAmmo
+    {
+        get => _infiniteAmmo;
+        set
+        {
+            if (_infiniteAmmo == value) return;
+            _infiniteAmmo = value;
+            InfiniteAmmoChanged?.Invoke(value);
+        }
+    }
+
+    public bool NoReload
+    {
+        get => _noReload;
+        set
+        {
+            if (_noReload == value) return;
+            _noReload = value;
+            NoReloadChanged?.Invoke(value);
+        }
+    }
+
     public event Action<GTA.Weapon> CurrentWeaponChanged;
 
     public event Action GiveAllWeaponsActivated;
+    public event Action<bool> InfiniteAmmoChanged;
+    public event Action<bool> NoReloadChanged;
 
     public void GiveAllWeapons()
     {
