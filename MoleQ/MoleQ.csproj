@@ -116,6 +116,7 @@
         <Compile Include="Services\Weapon\WeaponService.cs"/>
         <Compile Include="Settings\VehicleSettings.cs"/>
         <Compile Include="Settings\VehicleSpawnerSettings.cs"/>
+        <Compile Include="Settings\WeaponSettings.cs"/>
         <Compile Include="StateHandlers\IStateHandler.cs"/>
         <Compile Include="StateHandlers\PlayerStateHandler.cs"/>
         <Compile Include="StateHandlers\VehicleStateHandler.cs"/>

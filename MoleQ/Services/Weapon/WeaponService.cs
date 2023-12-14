@@ -37,6 +37,7 @@ public class WeaponService : IWeaponService
         {
             if (_noReload == value) return;
             _noReload = value;
+            InfiniteAmmo = value;
             NoReloadChanged?.Invoke(value);
         }
     }
