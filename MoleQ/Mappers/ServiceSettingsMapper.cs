@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using MoleQ.Settings;
 
-namespace MoleQ.Settings;
+namespace MoleQ.Mappers;
 
 public static class ServiceSettingsMapper
 {

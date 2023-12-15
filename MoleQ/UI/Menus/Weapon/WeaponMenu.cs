@@ -45,6 +45,8 @@ public class WeaponMenu : BaseMenu
         _weaponService.InfiniteAmmoChanged += state =>
         {
             infiniteAmmo.Checked = state;
+            if (_weaponService.NoReload && !state)
+                _weaponService.NoReload = false;
             Notify.CheckboxMessage("Infinite Ammo", state);
         };
         Add(infiniteAmmo);

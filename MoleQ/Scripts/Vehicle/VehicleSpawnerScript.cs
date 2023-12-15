@@ -1,9 +1,12 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using GTA;
 using MoleQ.Constants;
 using MoleQ.Enums;
 using MoleQ.Interfaces.Settings;
 using MoleQ.Interfaces.Vehicle;
+using MoleQ.Mappers;
 using MoleQ.ServiceInjector;
 using MoleQ.Services.Settings;
 using MoleQ.Settings;
@@ -21,6 +24,25 @@ public class VehicleSpawnerScript : BaseScript
         _storageService = new StorageService($"{Path.Settings}/VehicleSpawner.json");
         _vehicleSpawnerService.SpawnVehicleActivated += OnVehicleSpawned;
         KeyDown += OnKeyDown;
+    }
+
+    protected override void SaveSettings()
+    {
+        var settings = ServiceSettingsMapper.ExtractSettings<VehicleSpawnerSettings>(new Dictionary<Type, object>
+        {
+            { typeof(IVehicleSpawnerService), _vehicleSpawnerService }
+        });
+        _storageService.SaveSettings(settings);
+    }
+
+    protected override void LoadSettings()
+    {
+        var settings = _storageService.LoadSettings<VehicleSpawnerSettings>();
+        var services = new Dictionary<Type, object>
+        {
+            { typeof(IVehicleSpawnerService), _vehicleSpawnerService }
+        };
+        ServiceSettingsMapper.ApplySettings(settings, services);
     }
 
     private void OnKeyDown(object sender, KeyEventArgs e)
@@ -54,22 +76,5 @@ public class VehicleSpawnerScript : BaseScript
         }
 
         if (_vehicleSpawnerService.EnginesRunning) vehicle.IsEngineRunning = true;
-    }
-
-    protected override void SaveSettings()
-    {
-        var vehicleSpawnerSettings = new VehicleSpawnerSettings
-        {
-            WarpInSpawned = _vehicleSpawnerService.WarpInSpawned,
-            EnginesRunning = _vehicleSpawnerService.EnginesRunning
-        };
-        _storageService.SaveSettings(vehicleSpawnerSettings);
-    }
-
-    protected override void LoadSettings()
-    {
-        var settings = _storageService.LoadSettings<VehicleSpawnerSettings>();
-        _vehicleSpawnerService.WarpInSpawned = settings.WarpInSpawned;
-        _vehicleSpawnerService.EnginesRunning = settings.EnginesRunning;
     }
 }

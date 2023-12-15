@@ -6,6 +6,7 @@ using GTA.Native;
 using MoleQ.Constants;
 using MoleQ.Enums;
 using MoleQ.Interfaces.Player;
+using MoleQ.Mappers;
 using MoleQ.ServiceInjector;
 using MoleQ.Services.Settings;
 using MoleQ.Settings;

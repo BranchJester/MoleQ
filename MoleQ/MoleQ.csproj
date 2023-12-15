@@ -71,6 +71,8 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Managers\MenuManager.cs"/>
+        <Compile Include="Mappers\ServiceSettingsMapper.cs"/>
         <Compile Include="Settings\IServiceSettings.cs"/>
         <Compile Include="Settings\PlayerSettings.cs"/>
         <Compile Include="Constants\Path.cs"/>
@@ -115,7 +117,6 @@
         <Compile Include="Services\Vehicle\VehicleService.cs"/>
         <Compile Include="Services\Vehicle\VehicleSpawnerService.cs"/>
         <Compile Include="Services\Weapon\WeaponService.cs"/>
-        <Compile Include="Settings\ServiceSettingsMapper.cs"/>
         <Compile Include="Settings\VehicleSettings.cs"/>
         <Compile Include="Settings\VehicleSpawnerSettings.cs"/>
         <Compile Include="Settings\WeaponSettings.cs"/>
@@ -126,7 +127,6 @@
         <Compile Include="UI\Items\CustomNativeCheckboxItem.cs"/>
         <Compile Include="UI\Items\CustomNativeItem.cs"/>
         <Compile Include="UI\Items\CustomNativeListItem.cs"/>
-        <Compile Include="UI\Manager\MenuManager.cs"/>
         <Compile Include="UI\Menus\Abstract\BaseMenu.cs"/>
         <Compile Include="UI\Menus\MainMenu.cs"/>
         <Compile Include="UI\Menus\Player\PlayerMenu.cs"/>

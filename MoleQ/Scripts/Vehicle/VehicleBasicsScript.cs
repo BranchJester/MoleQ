@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using GTA;
 using MoleQ.Constants;
@@ -6,6 +7,7 @@ using MoleQ.Enums;
 using MoleQ.Exceptions;
 using MoleQ.Interfaces.Settings;
 using MoleQ.Interfaces.Vehicle;
+using MoleQ.Mappers;
 using MoleQ.ServiceInjector;
 using MoleQ.Services.Settings;
 using MoleQ.Settings;
@@ -29,17 +31,21 @@ public class VehicleBasicsScript : BaseScript
 
     protected override void SaveSettings()
     {
-        var vehicleSettings = new VehicleSettings
+        var settings = ServiceSettingsMapper.ExtractSettings<VehicleSettings>(new Dictionary<Type, object>
         {
-            Indestructible = _vehicleService.Indestructible
-        };
-        _storageService.SaveSettings(vehicleSettings);
+            { typeof(IVehicleService), _vehicleService }
+        });
+        _storageService.SaveSettings(settings);
     }
 
     protected override void LoadSettings()
     {
         var settings = _storageService.LoadSettings<VehicleSettings>();
-        _vehicleService.Indestructible = settings.Indestructible;
+        var services = new Dictionary<Type, object>
+        {
+            { typeof(IVehicleService), _vehicleService }
+        };
+        ServiceSettingsMapper.ApplySettings(settings, services);
     }
 
     private void OnKeyDown(object sender, KeyEventArgs e)

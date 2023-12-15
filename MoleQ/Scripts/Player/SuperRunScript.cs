@@ -5,7 +5,6 @@ using MoleQ.Enums;
 using MoleQ.Interfaces.Player;
 using MoleQ.Interfaces.Settings;
 using MoleQ.ServiceInjector;
-using MoleQ.Services.Player;
 using MoleQ.Services.Settings;
 
 namespace MoleQ.Scripts.Player;
@@ -50,17 +49,6 @@ public class SuperRunScript : BaseScript
                 Flash();
                 break;
         }
-    }
-
-    protected override void SaveSettings()
-    {
-        _storageService.SaveSettings(_superRunService);
-    }
-
-    protected override void LoadSettings()
-    {
-        var settings = _storageService.LoadSettings<SuperRunService>();
-        _superRunService.SuperRun = settings.SuperRun;
     }
 
     private void Flash()

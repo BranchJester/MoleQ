@@ -8,7 +8,6 @@ using MoleQ.Enums;
 using MoleQ.Interfaces.Player;
 using MoleQ.Interfaces.Settings;
 using MoleQ.ServiceInjector;
-using MoleQ.Services.Player;
 using MoleQ.Services.Settings;
 
 namespace MoleQ.Scripts.Player;
@@ -52,16 +51,5 @@ public class SuperPunchScript : BaseScript
 
         if (firstEntity == null) return;
         firstEntity.ApplyForce(Game.Player.Character.ForwardVector * 10000.0f);
-    }
-
-    protected override void LoadSettings()
-    {
-        var settings = _storageService.LoadSettings<SuperPunchService>();
-        _superPunchService.SuperPunch = settings.SuperPunch;
-    }
-
-    protected override void SaveSettings()
-    {
-        _storageService.SaveSettings(_superPunchService);
     }
 }

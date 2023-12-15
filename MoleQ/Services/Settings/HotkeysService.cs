@@ -22,25 +22,6 @@ public class HotkeysService : IHotkeyService
         return GetValueInternal(section.ToString(), keyName.ToString());
     }
 
-    // public bool IsKeyPressed((Keys mainKey, Keys[] modifierKeys) keys)
-    // {
-    //     // Check if the main key is pressed
-    //     var isMainKeyPressed = Game.IsKeyPressed(keys.mainKey);
-    //     if (!isMainKeyPressed) return false;
-    //
-    //     // Get the current state of modifier keys
-    //     var currentModifiers = Control.ModifierKeys;
-    //
-    //     // Check if each specified modifier key is pressed
-    //     if (keys.modifierKeys.Any(key =>
-    //             !currentModifiers.HasFlag(key)))
-    //         return false; // If any specified modifier key is not pressed, return false
-    //
-    //     // Check if no other modifiers are pressed
-    //     var validModifiers = new[] { Keys.Control, Keys.Shift, Keys.Alt };
-    //     return validModifiers.All(mod => !currentModifiers.HasFlag(mod) || keys.modifierKeys.Contains(mod));
-    // }
-
     public string GetValueAsString(SectionEnum section, Enum keyName)
     {
         var value = _config.GetValue(section.ToString(), keyName.ToString(), "");

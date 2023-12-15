@@ -6,7 +6,7 @@ using MoleQ.UI.Menus.Player;
 using MoleQ.UI.Menus.Vehicle;
 using MoleQ.UI.Menus.Weapon;
 
-namespace MoleQ.UI.Manager;
+namespace MoleQ.Managers;
 
 public class MenuManager
 {

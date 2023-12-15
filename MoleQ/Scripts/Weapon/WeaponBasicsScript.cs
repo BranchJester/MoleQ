@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using GTA;
 using GTA.Native;
@@ -6,6 +7,7 @@ using MoleQ.Constants;
 using MoleQ.Enums;
 using MoleQ.Interfaces.Settings;
 using MoleQ.Interfaces.Weapon;
+using MoleQ.Mappers;
 using MoleQ.ServiceInjector;
 using MoleQ.Services.Settings;
 using MoleQ.Settings;
@@ -25,6 +27,25 @@ public class WeaponBasicsScript : BaseScript
         _weaponService.CurrentWeaponChanged += OnWeaponChange;
         Tick += OnTick;
         KeyDown += OnKeyDown;
+    }
+
+    protected override void SaveSettings()
+    {
+        var settings = ServiceSettingsMapper.ExtractSettings<WeaponSettings>(new Dictionary<Type, object>
+        {
+            { typeof(IWeaponService), _weaponService }
+        });
+        _storageService.SaveSettings(settings);
+    }
+
+    protected override void LoadSettings()
+    {
+        var settings = _storageService.LoadSettings<WeaponSettings>();
+        var services = new Dictionary<Type, object>
+        {
+            { typeof(IWeaponService), _weaponService }
+        };
+        ServiceSettingsMapper.ApplySettings(settings, services);
     }
 
     private void OnWeaponChange(GTA.Weapon currentWeapon)
@@ -82,23 +103,5 @@ public class WeaponBasicsScript : BaseScript
         if (Game.Player.Character.Weapons.Current.AmmoInClip > 1) return;
 
         Game.Player.Character.Weapons.Current.AmmoInClip = Game.Player.Character.Weapons.Current.MaxAmmoInClip;
-    }
-
-    protected override void LoadSettings()
-    {
-        var settings = _storageService.LoadSettings<WeaponSettings>();
-
-        _weaponService.InfiniteAmmo = settings.InfiniteAmmo;
-        _weaponService.NoReload = settings.NoReload;
-    }
-
-    protected override void SaveSettings()
-    {
-        var weaponSettings = new WeaponSettings
-        {
-            InfiniteAmmo = _weaponService.InfiniteAmmo,
-            NoReload = _weaponService.NoReload
-        };
-        _storageService.SaveSettings(weaponSettings);
     }
 }

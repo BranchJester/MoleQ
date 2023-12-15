@@ -4,11 +4,11 @@ using MoleQ.Interfaces.Player;
 using MoleQ.Interfaces.Settings;
 using MoleQ.Interfaces.Vehicle;
 using MoleQ.Interfaces.Weapon;
+using MoleQ.Managers;
 using MoleQ.Services.Player;
 using MoleQ.Services.Settings;
 using MoleQ.Services.Vehicle;
 using MoleQ.Services.Weapon;
-using MoleQ.UI.Manager;
 
 namespace MoleQ.ServiceInjector;
 
