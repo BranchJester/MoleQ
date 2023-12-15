@@ -8,6 +8,7 @@ public class WeaponSettings : IServiceSettings
 {
     public bool InfiniteAmmo { get; set; }
     public bool NoReload { get; set; }
+
     public void ApplyToServices(IDictionary<Type, object> services)
     {
         if (services.TryGetValue(typeof(IWeaponService), out var weaponService))

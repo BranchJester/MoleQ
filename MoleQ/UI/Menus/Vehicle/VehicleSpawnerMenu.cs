@@ -26,20 +26,6 @@ public class VehicleSpawnerMenu : BaseMenu
         CreateVehicleClassMenus();
     }
 
-    private void EnginesRunning()
-    {
-        var enginesRunning = new CustomNativeCheckboxItem(VehicleSpawnerEnum.EnginesRunning,
-            HotkeysService.GetValueAsString(SectionEnum.VehicleSpawner, VehicleSpawnerEnum.EnginesRunning),
-            _vehicleSpawnerService.EnginesRunning);
-        enginesRunning.CheckboxChanged += (_, _) => { _vehicleSpawnerService.EnginesRunning = enginesRunning.Checked; };
-        _vehicleSpawnerService.EnginesRunningChanged += enginesRunningChanged =>
-        {
-            enginesRunning.Checked = enginesRunningChanged;
-            Notify.CheckboxMessage("Engines Running", enginesRunningChanged);
-        };
-        Add(enginesRunning);
-    }
-
     private void WarpInSpawned()
     {
         var warpInSpawned = new CustomNativeCheckboxItem(VehicleSpawnerEnum.WarpInSpawned,
@@ -52,6 +38,20 @@ public class VehicleSpawnerMenu : BaseMenu
             Notify.CheckboxMessage("Warp In Spawned", warpInSpawnedChanged);
         };
         Add(warpInSpawned);
+    }
+
+    private void EnginesRunning()
+    {
+        var enginesRunning = new CustomNativeCheckboxItem(VehicleSpawnerEnum.EnginesRunning,
+            HotkeysService.GetValueAsString(SectionEnum.VehicleSpawner, VehicleSpawnerEnum.EnginesRunning),
+            _vehicleSpawnerService.EnginesRunning);
+        enginesRunning.CheckboxChanged += (_, _) => { _vehicleSpawnerService.EnginesRunning = enginesRunning.Checked; };
+        _vehicleSpawnerService.EnginesRunningChanged += enginesRunningChanged =>
+        {
+            enginesRunning.Checked = enginesRunningChanged;
+            Notify.CheckboxMessage("Engines Running", enginesRunningChanged);
+        };
+        Add(enginesRunning);
     }
 
     private void CreateVehicleClassMenus()

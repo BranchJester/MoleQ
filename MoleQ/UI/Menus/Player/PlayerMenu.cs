@@ -39,50 +39,6 @@ public class PlayerMenu : BaseMenu
         SuperPunch();
     }
 
-    private void InfiniteSpecialAbility()
-    {
-        var infiniteSpecialAbility = new CustomNativeCheckboxItem(PlayerEnum.InfiniteSpecialAbility,
-            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteSpecialAbility),
-            _playerService.InfiniteSpecialAbility);
-        infiniteSpecialAbility.CheckboxChanged += (_, _) =>
-        {
-            _playerService.InfiniteSpecialAbility = infiniteSpecialAbility.Checked;
-        };
-        _playerService.InfiniteSpecialAbilityChanged += state =>
-        {
-            infiniteSpecialAbility.Checked = state;
-            Notify.CheckboxMessage("Infinite Special Ability", state);
-        };
-        Add(infiniteSpecialAbility);
-    }
-
-    private void SuperPunch()
-    {
-        var superPunch = new CustomNativeCheckboxItem(PlayerEnum.SuperPunch,
-            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.SuperPunch), _superPunchService.SuperPunch);
-        superPunch.CheckboxChanged += (_, _) => { _superPunchService.SuperPunch = superPunch.Checked; };
-        _superPunchService.SuperPunchChanged += state =>
-        {
-            superPunch.Checked = state;
-            Notify.CheckboxMessage("Super Punch", state);
-        };
-        Add(superPunch);
-    }
-
-    private void InfiniteBreath()
-    {
-        var infiniteBreath = new CustomNativeCheckboxItem(PlayerEnum.InfiniteBreath,
-            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteBreath),
-            _playerService.InfiniteBreath);
-        infiniteBreath.CheckboxChanged += (_, _) => { _playerService.InfiniteBreath = infiniteBreath.Checked; };
-        _playerService.InfiniteBreathChanged += state =>
-        {
-            infiniteBreath.Checked = state;
-            Notify.CheckboxMessage("Infinite Breath", state);
-        };
-        Add(infiniteBreath);
-    }
-
     private void FixPlayer()
     {
         var fixPlayer =
@@ -149,6 +105,58 @@ public class PlayerMenu : BaseMenu
         Add(invincible);
     }
 
+    private void InfiniteStamina()
+    {
+        var infiniteStamina = new CustomNativeCheckboxItem(PlayerEnum.InfiniteStamina,
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteStamina),
+            _playerService.InfiniteStamina)
+        {
+            Checked = _playerService.InfiniteStamina
+        };
+        infiniteStamina.CheckboxChanged += (_, _) =>
+        {
+            _playerService.InfiniteStamina = infiniteStamina.Checked;
+            Notify.CheckboxMessage("Infinite Stamina", infiniteStamina.Checked);
+        };
+        _playerService.InfiniteStaminaChanged += state =>
+        {
+            infiniteStamina.Checked = state;
+            Notify.CheckboxMessage("Infinite Stamina", state);
+        };
+        Add(infiniteStamina);
+    }
+
+    private void InfiniteBreath()
+    {
+        var infiniteBreath = new CustomNativeCheckboxItem(PlayerEnum.InfiniteBreath,
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteBreath),
+            _playerService.InfiniteBreath);
+        infiniteBreath.CheckboxChanged += (_, _) => { _playerService.InfiniteBreath = infiniteBreath.Checked; };
+        _playerService.InfiniteBreathChanged += state =>
+        {
+            infiniteBreath.Checked = state;
+            Notify.CheckboxMessage("Infinite Breath", state);
+        };
+        Add(infiniteBreath);
+    }
+
+    private void InfiniteSpecialAbility()
+    {
+        var infiniteSpecialAbility = new CustomNativeCheckboxItem(PlayerEnum.InfiniteSpecialAbility,
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteSpecialAbility),
+            _playerService.InfiniteSpecialAbility);
+        infiniteSpecialAbility.CheckboxChanged += (_, _) =>
+        {
+            _playerService.InfiniteSpecialAbility = infiniteSpecialAbility.Checked;
+        };
+        _playerService.InfiniteSpecialAbilityChanged += state =>
+        {
+            infiniteSpecialAbility.Checked = state;
+            Notify.CheckboxMessage("Infinite Special Ability", state);
+        };
+        Add(infiniteSpecialAbility);
+    }
+
     private void SuperJump()
     {
         var superJump =
@@ -190,24 +198,16 @@ public class PlayerMenu : BaseMenu
         Add(superRun);
     }
 
-    private void InfiniteStamina()
+    private void SuperPunch()
     {
-        var infiniteStamina = new CustomNativeCheckboxItem(PlayerEnum.InfiniteStamina,
-            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteStamina),
-            _playerService.InfiniteStamina)
+        var superPunch = new CustomNativeCheckboxItem(PlayerEnum.SuperPunch,
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.SuperPunch), _superPunchService.SuperPunch);
+        superPunch.CheckboxChanged += (_, _) => { _superPunchService.SuperPunch = superPunch.Checked; };
+        _superPunchService.SuperPunchChanged += state =>
         {
-            Checked = _playerService.InfiniteStamina
+            superPunch.Checked = state;
+            Notify.CheckboxMessage("Super Punch", state);
         };
-        infiniteStamina.CheckboxChanged += (_, _) =>
-        {
-            _playerService.InfiniteStamina = infiniteStamina.Checked;
-            Notify.CheckboxMessage("Infinite Stamina", infiniteStamina.Checked);
-        };
-        _playerService.InfiniteStaminaChanged += state =>
-        {
-            infiniteStamina.Checked = state;
-            Notify.CheckboxMessage("Infinite Stamina", state);
-        };
-        Add(infiniteStamina);
+        Add(superPunch);
     }
 }

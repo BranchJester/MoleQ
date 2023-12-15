@@ -22,19 +22,13 @@ public class WeaponMenu : BaseMenu
         NoReload();
     }
 
-    private void NoReload()
+    private void GiveAllWeapons()
     {
-        var noReload = new CustomNativeCheckboxItem(WeaponEnum.NoReload,
-            HotkeysService.GetValueAsString(SectionEnum.Weapon, WeaponEnum.NoReload), _weaponService.NoReload);
-        noReload.CheckboxChanged += (_, _) => { _weaponService.NoReload = noReload.Checked; };
-        noReload.Enabled = _weaponService.InfiniteAmmo;
-        _weaponService.NoReloadChanged += state =>
-        {
-            noReload.Checked = state;
-            Notify.CheckboxMessage("No Reload", state);
-        };
-        _weaponService.InfiniteAmmoChanged += state => { noReload.Enabled = state; };
-        Add(noReload);
+        var giveAllWeapons = new CustomNativeItem(WeaponEnum.GiveAllWeapons,
+            HotkeysService.GetValueAsString(SectionEnum.Weapon, WeaponEnum.GiveAllWeapons));
+        giveAllWeapons.Activated += (_, _) => { _weaponService.GiveAllWeapons(); };
+        _weaponService.GiveAllWeaponsActivated += () => { Notify.Message("You have received all weapons."); };
+        Add(giveAllWeapons);
     }
 
     private void InfiniteAmmo()
@@ -52,12 +46,18 @@ public class WeaponMenu : BaseMenu
         Add(infiniteAmmo);
     }
 
-    private void GiveAllWeapons()
+    private void NoReload()
     {
-        var giveAllWeapons = new CustomNativeItem(WeaponEnum.GiveAllWeapons,
-            HotkeysService.GetValueAsString(SectionEnum.Weapon, WeaponEnum.GiveAllWeapons));
-        giveAllWeapons.Activated += (_, _) => { _weaponService.GiveAllWeapons(); };
-        _weaponService.GiveAllWeaponsActivated += () => { Notify.Message("You have received all weapons."); };
-        Add(giveAllWeapons);
+        var noReload = new CustomNativeCheckboxItem(WeaponEnum.NoReload,
+            HotkeysService.GetValueAsString(SectionEnum.Weapon, WeaponEnum.NoReload), _weaponService.NoReload);
+        noReload.CheckboxChanged += (_, _) => { _weaponService.NoReload = noReload.Checked; };
+        noReload.Enabled = _weaponService.InfiniteAmmo;
+        _weaponService.NoReloadChanged += state =>
+        {
+            noReload.Checked = state;
+            Notify.CheckboxMessage("No Reload", state);
+        };
+        _weaponService.InfiniteAmmoChanged += state => { noReload.Enabled = state; };
+        Add(noReload);
     }
 }

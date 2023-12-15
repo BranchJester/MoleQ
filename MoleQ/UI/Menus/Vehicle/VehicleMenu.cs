@@ -24,24 +24,6 @@ public class VehicleMenu : BaseMenu
         IndestructibleVehicle();
     }
 
-    private void IndestructibleVehicle()
-    {
-        var indestructibleBVehicle =
-            new CustomNativeCheckboxItem(VehicleEnum.Indestructible,
-                HotkeysService.GetValueAsString(SectionEnum.Vehicle, VehicleEnum.Indestructible),
-                _vehicleService.Indestructible);
-        indestructibleBVehicle.CheckboxChanged += (_, _) =>
-        {
-            _vehicleService.Indestructible = indestructibleBVehicle.Checked;
-        };
-        _vehicleService.IndestructibleChanged += indestructible =>
-        {
-            indestructibleBVehicle.Checked = indestructible;
-            Notify.CheckboxMessage("Indestructible Vehicle", indestructible);
-        };
-        Add(indestructibleBVehicle);
-    }
-
     private void RepairVehicle()
     {
         var repairVehicle = new CustomNativeItem(VehicleEnum.RepairVehicle,
@@ -59,5 +41,23 @@ public class VehicleMenu : BaseMenu
         };
         _vehicleService.OnRepairVehicle += () => Notify.Message("Vehicle Repaired");
         Add(repairVehicle);
+    }
+
+    private void IndestructibleVehicle()
+    {
+        var indestructibleBVehicle =
+            new CustomNativeCheckboxItem(VehicleEnum.Indestructible,
+                HotkeysService.GetValueAsString(SectionEnum.Vehicle, VehicleEnum.Indestructible),
+                _vehicleService.Indestructible);
+        indestructibleBVehicle.CheckboxChanged += (_, _) =>
+        {
+            _vehicleService.Indestructible = indestructibleBVehicle.Checked;
+        };
+        _vehicleService.IndestructibleChanged += indestructible =>
+        {
+            indestructibleBVehicle.Checked = indestructible;
+            Notify.CheckboxMessage("Indestructible Vehicle", indestructible);
+        };
+        Add(indestructibleBVehicle);
     }
 }
