@@ -58,29 +58,9 @@ public class VehicleSpawnerMenu : BaseMenu
     {
         foreach (VehicleClass vehicleClass in Enum.GetValues(typeof(VehicleClass)))
         {
-            var vehicleClassMenu = new VehicleClassMenu(vehicleClass.ToPrettyString());
+            var vehicleClassMenu = new VehicleClassMenu(vehicleClass.ToPrettyString(), _vehicleSpawnerService, vehicleClass);
             Injector.MenuManager.MenuPool.Add(vehicleClassMenu);
             AddSubMenu(vehicleClassMenu, "Menu");
-
-            foreach (var vehicleHash in GTA.Vehicle.GetAllModelsOfClass(vehicleClass))
-            {
-                var vehicleDisplayName = Game.GetLocalizedString((int)vehicleHash);
-
-                if (string.IsNullOrEmpty(vehicleDisplayName)) vehicleDisplayName = vehicleHash.ToPrettyString();
-
-                var vehicleMenuItem = new CustomNativeItem(vehicleDisplayName, $"Spawn {vehicleDisplayName}");
-                vehicleMenuItem.Activated += (_, _) => { _vehicleSpawnerService.SpawnVehicle(vehicleHash); };
-                vehicleClassMenu.Add(vehicleMenuItem);
-            }
         }
-
-        _vehicleSpawnerService.SpawnVehicleActivated += vHash =>
-        {
-            var vehicleDisplayName = Game.GetLocalizedString((int)vHash);
-
-            if (string.IsNullOrEmpty(vehicleDisplayName)) vehicleDisplayName = vHash.ToPrettyString();
-
-            Notify.Message($"Spawned {vehicleDisplayName}");
-        };
     }
 }

@@ -48,7 +48,7 @@ public abstract class BaseMenu : NativeMenu
         Injector.MenuManager.CurrentMenu = null;
     }
 
-    protected abstract void InitializeItems();
+    protected virtual void InitializeItems() {}
 
     private void OnShown(object sender, EventArgs e)
     {

@@ -1,5 +1,6 @@
 ﻿using MoleQ.Enums;
 using MoleQ.Interfaces.Weapon;
+using MoleQ.ServiceInjector;
 using MoleQ.UI.Items;
 using MoleQ.UI.Menus.Abstract;
 using MoleQ.UI.Notification;
@@ -17,9 +18,17 @@ public class WeaponMenu : BaseMenu
 
     protected override void InitializeItems()
     {
+        CreateWeaponAttachmentMenu();
         GiveAllWeapons();
         InfiniteAmmo();
         NoReload();
+    }
+
+    private void CreateWeaponAttachmentMenu()
+    {
+        var weaponAttachmentMenu = new WeaponAttachmentMenu("Weapon Attachment", _weaponService);
+        Injector.MenuManager.MenuPool.Add(weaponAttachmentMenu);
+        AddSubMenu(weaponAttachmentMenu, "Menu");
     }
 
     private void GiveAllWeapons()

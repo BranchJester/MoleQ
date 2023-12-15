@@ -33,6 +33,7 @@ public class MenuManager
     public MainMenu MainMenu { get; }
     public PlayerMenu PlayerMenu { get; }
     public VehicleMenu VehicleMenu { get; }
+    public NativeMenu VehicleSpawnerMenu { get; set; }
     public TeleportMenu TeleportMenu { get; }
     public WeaponMenu WeaponMenu { get; }
 
@@ -40,5 +41,4 @@ public class MenuManager
     public NativeMenu CurrentMenu { get; set; }
 
     public NativeItem SelectedItem { get; set; }
-    public NativeMenu VehicleSpawnerMenu { get; set; }
 }
