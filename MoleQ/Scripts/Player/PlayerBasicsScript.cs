@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using GTA;
 using GTA.Native;
@@ -62,7 +63,7 @@ public class PlayerBasicsScript : BaseScript
         var infiniteBreath = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.InfiniteBreath);
         if (IsKeyPressed(infiniteBreath))
             _playerService.InfiniteBreath = !_playerService.InfiniteBreath;
-        
+
         var infiniteSpecialAbilityKey = HotkeysService.GetValue(SectionEnum.Player, PlayerEnum.InfiniteSpecialAbility);
         if (IsKeyPressed(infiniteSpecialAbilityKey))
             _playerService.InfiniteSpecialAbility = !_playerService.InfiniteSpecialAbility;
@@ -70,35 +71,25 @@ public class PlayerBasicsScript : BaseScript
 
     protected override void SaveSettings()
     {
-        var playerSettings = new PlayerSettings
+        var settings = ServiceSettingsMapper.ExtractSettings<PlayerSettings>(new Dictionary<Type, object>
         {
-            Invincible = _playerService.Invincible,
-            SuperJump = _playerService.SuperJump,
-            LockWantedLevel = _playerService.LockWantedLevel,
-            MaxWantedLevel = _playerService.MaxWantedLevel,
-            InfiniteStamina = _playerService.InfiniteStamina,
-            WantedLevel = _playerService.WantedLevel,
-            InfiniteBreath = _playerService.InfiniteBreath,
-            InfiniteSpecialAbility = _playerService.InfiniteSpecialAbility,
-            SuperPunch = _superPunchService.SuperPunch,
-            SuperRun = _superRunService.SuperRun
-            
-        };
-        _storageService.SaveSettings(playerSettings);
+            { typeof(IPlayerService), _playerService },
+            { typeof(ISuperPunchService), _superPunchService },
+            { typeof(ISuperRunService), _superRunService }
+        });
+        _storageService.SaveSettings(settings);
     }
 
     protected override void LoadSettings()
     {
         var settings = _storageService.LoadSettings<PlayerSettings>();
-        _playerService.Invincible = settings.Invincible;
-        _playerService.SuperJump = settings.SuperJump;
-        _playerService.LockWantedLevel = settings.LockWantedLevel;
-        _playerService.MaxWantedLevel = settings.MaxWantedLevel;
-        _playerService.InfiniteStamina = settings.InfiniteStamina;
-        _playerService.WantedLevel = settings.WantedLevel;
-        _playerService.InfiniteBreath = settings.InfiniteBreath;
-        _playerService.InfiniteSpecialAbility = settings.InfiniteSpecialAbility;
-        _superPunchService.SuperPunch = settings.SuperPunch;
+        var services = new Dictionary<Type, object>
+        {
+            { typeof(IPlayerService), _playerService },
+            { typeof(ISuperPunchService), _superPunchService },
+            { typeof(ISuperRunService), _superRunService }
+        };
+        ServiceSettingsMapper.ApplySettings(settings, services);
     }
 
     private void OnTick(object sender, EventArgs e)

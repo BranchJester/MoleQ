@@ -71,6 +71,7 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Settings\IServiceSettings.cs"/>
         <Compile Include="Settings\PlayerSettings.cs"/>
         <Compile Include="Constants\Path.cs"/>
         <Compile Include="Enums\SectionEnum.cs"/>
@@ -114,6 +115,7 @@
         <Compile Include="Services\Vehicle\VehicleService.cs"/>
         <Compile Include="Services\Vehicle\VehicleSpawnerService.cs"/>
         <Compile Include="Services\Weapon\WeaponService.cs"/>
+        <Compile Include="Settings\ServiceSettingsMapper.cs"/>
         <Compile Include="Settings\VehicleSettings.cs"/>
         <Compile Include="Settings\VehicleSpawnerSettings.cs"/>
         <Compile Include="Settings\WeaponSettings.cs"/>
