@@ -102,9 +102,11 @@ public class SuperRunScript : BaseScript
             // Set if-condition to check if RideOnCars is activated.
 
             // Ensure the ragdoll goes back to normal when not sprinting.
-            Game.Player.Character.CanRagdoll = true;
+            if (!Game.Player.Character.CanRagdoll)
+                Game.Player.Character.CanRagdoll = true;
             return;
         }
+        if (!Game.Player.Character.IsSprinting) return;
 
         // Set max speed
         _maxSpeed = maxSpeed;
