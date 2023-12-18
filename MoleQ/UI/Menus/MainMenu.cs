@@ -14,5 +14,6 @@ public class MainMenu : BaseMenu
         AddSubMenu(Injector.MenuManager.PlayerMenu, "Menu");
         AddSubMenu(Injector.MenuManager.VehicleMenu, "Menu");
         AddSubMenu(Injector.MenuManager.WeaponMenu, "Menu");
+        AddSubMenu(Injector.MenuManager.SettingsMenu, "Menu");
     }
 }

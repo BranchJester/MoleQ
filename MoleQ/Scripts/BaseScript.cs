@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
 using GTA;
+using MoleQ.Enums;
 using MoleQ.Interfaces.Settings;
 using MoleQ.ServiceInjector;
 using MoleQ.UI.Notification;
@@ -22,9 +23,11 @@ public abstract class BaseScript : Script
 
     private void OnKeyDown(object sender, KeyEventArgs e)
     {
-        if (e.KeyCode == Keys.S && e.Control && e.Shift) SaveSettings();
+        var saveSettingsKey = HotkeysService.GetValue(SectionEnum.Settings, SettingsEnum.SaveSettings);
+        if (IsKeyPressed(saveSettingsKey)) SaveSettings();
 
-        if (e.KeyCode == Keys.L && e.Control && e.Shift) LoadSettings();
+        var loadSettingsKey = HotkeysService.GetValue(SectionEnum.Settings, SettingsEnum.LoadSettings);
+        if (IsKeyPressed(loadSettingsKey)) LoadSettings();
     }
 
     protected virtual void SaveSettings()

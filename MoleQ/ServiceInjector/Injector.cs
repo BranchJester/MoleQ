@@ -30,6 +30,7 @@ public static class Injector
     public static IVehicleService VehicleService { get; private set; }
     public static IVehicleSpawnerService VehicleSpawnerService { get; private set; }
     public static IWeaponService WeaponService { get; private set; }
+    public static ISettingsService SettingsService { get; private set; }
 
 
     // Repositories
@@ -59,6 +60,9 @@ public static class Injector
 
         // Weapon
         WeaponService = new WeaponService();
+
+        // Settings
+        SettingsService = new SettingsService();
 
         // Repositories
 

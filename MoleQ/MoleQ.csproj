@@ -10,14 +10,14 @@
         <!-- Copy the .dll file to the new directory -->
         <Copy SourceFiles="$(TargetDir)$(TargetName).dll" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\MoleQ"/>
         <Copy SourceFiles="$(TargetDir)Newtonsoft.Json.dll" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts"/>
-        <Copy SourceFiles="C:\Datamatiker\GTA\MoleQ\MoleQ\hotkeys.ini" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\MoleQ"/>
+        <Copy SourceFiles="C:\Datamatiker\MoleQ\MoleQ\hotkeys.ini" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\Grand Theft Auto V\scripts\MoleQ"/>
 
         <Exec Command="if not exist &quot;C:\Program Files (x86)\GTA - Backup\scripts\MoleQ&quot; mkdir &quot;C:\Program Files (x86)\GTA - Backup\scripts\MoleQ&quot;" ContinueOnError="true"/>
 
         <!-- Copy the .dll file to the new directory -->
         <Copy SourceFiles="$(TargetDir)$(TargetName).dll" DestinationFolder="C:\Program Files (x86)\GTA - Backup\scripts\MoleQ"/>
         <Copy SourceFiles="$(TargetDir)Newtonsoft.Json.dll" DestinationFolder="C:\Program Files (x86)\GTA - Backup\scripts"/>
-        <Copy SourceFiles="C:\Datamatiker\GTA\MoleQ\MoleQ\hotkeys.ini" DestinationFolder="C:\Program Files (x86)\GTA - Backup\scripts\MoleQ"/>
+        <Copy SourceFiles="C:\Datamatiker\MoleQ\MoleQ\hotkeys.ini" DestinationFolder="C:\Program Files (x86)\GTA - Backup\scripts\MoleQ"/>
     </Target>
 
 
@@ -71,8 +71,11 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Enums\SettingsEnum.cs"/>
+        <Compile Include="Interfaces\Settings\ISettingsService.cs"/>
         <Compile Include="Managers\MenuManager.cs"/>
         <Compile Include="Mappers\ServiceSettingsMapper.cs"/>
+        <Compile Include="Services\Settings\SettingsService.cs"/>
         <Compile Include="Settings\IServiceSettings.cs"/>
         <Compile Include="Settings\PlayerSettings.cs"/>
         <Compile Include="Constants\Path.cs"/>
@@ -131,6 +134,7 @@
         <Compile Include="UI\Menus\MainMenu.cs"/>
         <Compile Include="UI\Menus\Player\PlayerMenu.cs"/>
         <Compile Include="UI\Menus\Player\TeleportMenu.cs"/>
+        <Compile Include="UI\Menus\SettingsMenu.cs"/>
         <Compile Include="UI\Menus\Vehicle\VehicleClassMenu.cs"/>
         <Compile Include="UI\Menus\Vehicle\VehicleMenu.cs"/>
         <Compile Include="UI\Menus\Vehicle\VehicleSpawnerMenu.cs"/>

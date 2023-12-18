@@ -7,5 +7,6 @@ public enum SectionEnum
     Teleport,
     Vehicle,
     VehicleSpawner,
-    Weapon
+    Weapon,
+    Settings
 }
