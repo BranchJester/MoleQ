@@ -1,6 +1,6 @@
-﻿namespace MoleQ.Interfaces.Settings;
+﻿namespace MoleQ.Repositories;
 
-public interface IStorageService
+public interface IStorageRepository
 {
     void SaveSettings<T>(T settings);
     T LoadSettings<T>() where T : new();

@@ -1,15 +1,14 @@
 ﻿using System.IO;
-using MoleQ.Interfaces.Settings;
 using Newtonsoft.Json;
 
-namespace MoleQ.Services.Settings;
+namespace MoleQ.Repositories;
 
-public class StorageService : IStorageService
+public class StorageRepository : IStorageRepository
 {
     private readonly string _filePath;
     private readonly JsonSerializerSettings _settings;
 
-    public StorageService(string filePath)
+    public StorageRepository(string filePath)
     {
         _filePath = filePath;
         _settings = new JsonSerializerSettings

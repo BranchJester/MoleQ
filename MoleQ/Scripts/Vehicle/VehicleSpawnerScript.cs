@@ -4,24 +4,23 @@ using System.Windows.Forms;
 using GTA;
 using MoleQ.Constants;
 using MoleQ.Enums;
-using MoleQ.Interfaces.Settings;
 using MoleQ.Interfaces.Vehicle;
 using MoleQ.Mappers;
+using MoleQ.Repositories;
 using MoleQ.ServiceInjector;
-using MoleQ.Services.Settings;
 using MoleQ.Settings;
 
 namespace MoleQ.Scripts.Vehicle;
 
 public class VehicleSpawnerScript : BaseScript
 {
-    private readonly IStorageService _storageService;
+    private readonly IStorageRepository _storageRepository;
     private readonly IVehicleSpawnerService _vehicleSpawnerService;
 
     public VehicleSpawnerScript()
     {
         _vehicleSpawnerService = Injector.VehicleSpawnerService;
-        _storageService = new StorageService($"{Path.Settings}/VehicleSpawner.json");
+        _storageRepository = new StorageRepository($"{Path.Settings}/VehicleSpawner.json");
         _vehicleSpawnerService.SpawnVehicleActivated += OnVehicleSpawned;
         KeyDown += OnKeyDown;
     }
@@ -32,12 +31,12 @@ public class VehicleSpawnerScript : BaseScript
         {
             { typeof(IVehicleSpawnerService), _vehicleSpawnerService }
         });
-        _storageService.SaveSettings(settings);
+        _storageRepository.SaveSettings(settings);
     }
 
     protected override void LoadSettings()
     {
-        var settings = _storageService.LoadSettings<VehicleSpawnerSettings>();
+        var settings = _storageRepository.LoadSettings<VehicleSpawnerSettings>();
         var services = new Dictionary<Type, object>
         {
             { typeof(IVehicleSpawnerService), _vehicleSpawnerService }

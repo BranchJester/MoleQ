@@ -6,21 +6,20 @@ using GTA.Math;
 using MoleQ.Constants;
 using MoleQ.Enums;
 using MoleQ.Interfaces.Player;
-using MoleQ.Interfaces.Settings;
+using MoleQ.Repositories;
 using MoleQ.ServiceInjector;
-using MoleQ.Services.Settings;
 
 namespace MoleQ.Scripts.Player;
 
 public class SuperPunchScript : BaseScript
 {
-    private readonly IStorageService _storageService;
+    private readonly IStorageRepository _storageRepository;
     private readonly ISuperPunchService _superPunchService;
 
     public SuperPunchScript()
     {
         _superPunchService = Injector.SuperPunchService;
-        _storageService = new StorageService($"{Path.Settings}/SuperPunch.json");
+        _storageRepository = new StorageRepository($"{Path.Settings}/SuperPunch.json");
         Tick += OnTick;
         KeyDown += OnKeyDown;
     }

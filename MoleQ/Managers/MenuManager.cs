@@ -20,7 +20,7 @@ public class MenuManager
         VehicleSpawnerMenu = new VehicleSpawnerMenu("Vehicle Spawner", Injector.VehicleSpawnerService);
         TeleportMenu = new TeleportMenu("Teleport", Injector.TeleportService);
         WeaponMenu = new WeaponMenu("Weapon", Injector.WeaponService);
-        SettingsMenu = new SettingsMenu("Settings", Injector.SettingsService);
+        SettingsMenu = new SettingsMenu("Settings");
 
         MenuPool.Add(MainMenu);
         MenuPool.Add(PlayerMenu);

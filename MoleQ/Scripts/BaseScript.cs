@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using GTA;
 using MoleQ.Enums;
 using MoleQ.Interfaces.Settings;
 using MoleQ.ServiceInjector;
+using MoleQ.Services.Settings;
 using MoleQ.UI.Notification;
 using Control = System.Windows.Forms.Control;
 
@@ -12,13 +14,23 @@ namespace MoleQ.Scripts;
 /// <summary>
 ///     Used as a base for all scripts.
 /// </summary>
-public abstract class BaseScript : Script
+public class BaseScript : Script
 {
     protected readonly IHotkeyService HotkeysService = Injector.HotkeysService;
+    protected readonly SettingsService SettingsService = Injector.SettingsService;
 
     public BaseScript()
     {
         KeyDown += OnKeyDown;
+        SettingsService.SaveSettingsActivated += SaveSettings;
+        SettingsService.LoadSettingsActivated += LoadSettings;
+        Aborted += OnAbort;
+    }
+
+    private void OnAbort(object sender, EventArgs e)
+    {
+        if (SettingsService.AutoSave)
+            SaveSettings();
     }
 
     private void OnKeyDown(object sender, KeyEventArgs e)

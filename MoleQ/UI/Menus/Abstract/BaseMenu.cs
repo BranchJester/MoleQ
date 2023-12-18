@@ -20,11 +20,10 @@ public abstract class BaseMenu : NativeMenu
         var instructionalButton = new InstructionalButton("Change Hotkey", Control.SelectWeapon);
         Buttons.Add(instructionalButton);
 
-        Injector.ServicesInitialized +=
-            InitializeItems; // Initializes all menu items after the services have been initialized.
         Shown += OnShown;
         Closed += OnClosed;
         HotkeysService.HotkeyChanged += OnHotkeyChanged;
+        Injector.ServicesInitialized += InitializeItems;
     }
 
     public string MenuName { get; set; }
@@ -48,7 +47,9 @@ public abstract class BaseMenu : NativeMenu
         Injector.MenuManager.CurrentMenu = null;
     }
 
-    protected virtual void InitializeItems() {}
+    protected virtual void InitializeItems()
+    {
+    }
 
     private void OnShown(object sender, EventArgs e)
     {

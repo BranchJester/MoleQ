@@ -72,9 +72,11 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Enums\SettingsEnum.cs"/>
-        <Compile Include="Interfaces\Settings\ISettingsService.cs"/>
         <Compile Include="Managers\MenuManager.cs"/>
         <Compile Include="Mappers\ServiceSettingsMapper.cs"/>
+        <Compile Include="Repositories\IStorageRepository.cs"/>
+        <Compile Include="Repositories\StorageRepository.cs"/>
+        <Compile Include="Scripts\SettingsScript.cs"/>
         <Compile Include="Services\Settings\SettingsService.cs"/>
         <Compile Include="Settings\IServiceSettings.cs"/>
         <Compile Include="Settings\PlayerSettings.cs"/>
@@ -94,7 +96,6 @@
         <Compile Include="Interfaces\Player\ISuperRunService.cs"/>
         <Compile Include="Interfaces\Player\ITeleportService.cs"/>
         <Compile Include="Interfaces\Settings\IHotkeyService.cs"/>
-        <Compile Include="Interfaces\Settings\IStorageService.cs"/>
         <Compile Include="Interfaces\Vehicle\IVehicleService.cs"/>
         <Compile Include="Interfaces\Vehicle\IVehicleSpawnerService.cs"/>
         <Compile Include="Interfaces\Weapon\IWeaponService.cs"/>
@@ -116,10 +117,10 @@
         <Compile Include="Services\Player\SuperRunService.cs"/>
         <Compile Include="Services\Player\TeleportService.cs"/>
         <Compile Include="Services\Settings\HotkeysService.cs"/>
-        <Compile Include="Services\Settings\StorageService.cs"/>
         <Compile Include="Services\Vehicle\VehicleService.cs"/>
         <Compile Include="Services\Vehicle\VehicleSpawnerService.cs"/>
         <Compile Include="Services\Weapon\WeaponService.cs"/>
+        <Compile Include="Settings\SettingsSettings.cs"/>
         <Compile Include="Settings\VehicleSettings.cs"/>
         <Compile Include="Settings\VehicleSpawnerSettings.cs"/>
         <Compile Include="Settings\WeaponSettings.cs"/>

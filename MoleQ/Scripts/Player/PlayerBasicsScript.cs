@@ -7,8 +7,8 @@ using MoleQ.Constants;
 using MoleQ.Enums;
 using MoleQ.Interfaces.Player;
 using MoleQ.Mappers;
+using MoleQ.Repositories;
 using MoleQ.ServiceInjector;
-using MoleQ.Services.Settings;
 using MoleQ.Settings;
 
 namespace MoleQ.Scripts.Player;
@@ -16,7 +16,9 @@ namespace MoleQ.Scripts.Player;
 public class PlayerBasicsScript : BaseScript
 {
     private readonly IPlayerService _playerService;
-    private readonly StorageService _storageService;
+
+    // private readonly ISettingsService _settingsService;
+    private readonly StorageRepository _storageRepository;
     private readonly ISuperPunchService _superPunchService;
     private readonly ISuperRunService _superRunService;
 
@@ -25,10 +27,14 @@ public class PlayerBasicsScript : BaseScript
         _playerService = Injector.PlayerService;
         _superPunchService = Injector.SuperPunchService;
         _superRunService = Injector.SuperRunService;
-        _storageService = new StorageService($"{Path.Settings}/Player.json");
+        // _settingsService = Injector.SettingsService;
+        _storageRepository = new StorageRepository($"{Path.Settings}/Player.json");
         _playerService.FixPlayerActivated += FixPlayer;
         _playerService.WantedLevelChanged += ChangeWantedLevel;
         _playerService.InfiniteBreathChanged += InfiniteBreath;
+
+        // Some code smells here --should be refactored
+        // _settingsService.SaveSettingsActivated += SaveSettings;
 
         Tick += OnTick;
         KeyDown += OnKeyDown;
@@ -78,12 +84,12 @@ public class PlayerBasicsScript : BaseScript
             { typeof(ISuperPunchService), _superPunchService },
             { typeof(ISuperRunService), _superRunService }
         });
-        _storageService.SaveSettings(settings);
+        _storageRepository.SaveSettings(settings);
     }
 
     protected override void LoadSettings()
     {
-        var settings = _storageService.LoadSettings<PlayerSettings>();
+        var settings = _storageRepository.LoadSettings<PlayerSettings>();
         var services = new Dictionary<Type, object>
         {
             { typeof(IPlayerService), _playerService },

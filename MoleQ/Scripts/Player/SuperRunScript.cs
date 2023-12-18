@@ -3,16 +3,15 @@ using GTA;
 using MoleQ.Constants;
 using MoleQ.Enums;
 using MoleQ.Interfaces.Player;
-using MoleQ.Interfaces.Settings;
+using MoleQ.Repositories;
 using MoleQ.ServiceInjector;
-using MoleQ.Services.Settings;
 
 namespace MoleQ.Scripts.Player;
 
 public class SuperRunScript : BaseScript
 {
     private readonly IPlayerService _playerService;
-    private readonly IStorageService _storageService;
+    private readonly IStorageRepository _storageRepository;
     private readonly ISuperRunService _superRunService;
     private float _maxSpeed;
 
@@ -20,7 +19,7 @@ public class SuperRunScript : BaseScript
     {
         _playerService = Injector.PlayerService;
         _superRunService = Injector.SuperRunService;
-        _storageService = new StorageService($"{Path.Settings}/SuperRun.json");
+        _storageRepository = new StorageRepository($"{Path.Settings}/SuperRun.json");
         Tick += OnTick;
     }
 
@@ -106,6 +105,7 @@ public class SuperRunScript : BaseScript
                 Game.Player.Character.CanRagdoll = true;
             return;
         }
+
         if (!Game.Player.Character.IsSprinting) return;
 
         // Set max speed

@@ -5,23 +5,22 @@ using GTA;
 using GTA.Native;
 using MoleQ.Constants;
 using MoleQ.Enums;
-using MoleQ.Interfaces.Settings;
 using MoleQ.Interfaces.Weapon;
 using MoleQ.Mappers;
+using MoleQ.Repositories;
 using MoleQ.ServiceInjector;
-using MoleQ.Services.Settings;
 using MoleQ.Settings;
 
 namespace MoleQ.Scripts.Weapon;
 
 public class WeaponBasicsScript : BaseScript
 {
-    private readonly IStorageService _storageService;
+    private readonly IStorageRepository _storageRepository;
     private readonly IWeaponService _weaponService;
 
     public WeaponBasicsScript()
     {
-        _storageService = new StorageService($"{Path.Settings}/Weapon.json");
+        _storageRepository = new StorageRepository($"{Path.Settings}/Weapon.json");
         _weaponService = Injector.WeaponService;
         _weaponService.GiveAllWeaponsActivated += GiveAllWeapons;
         _weaponService.CurrentWeaponChanged += OnWeaponChange;
@@ -35,12 +34,12 @@ public class WeaponBasicsScript : BaseScript
         {
             { typeof(IWeaponService), _weaponService }
         });
-        _storageService.SaveSettings(settings);
+        _storageRepository.SaveSettings(settings);
     }
 
     protected override void LoadSettings()
     {
-        var settings = _storageService.LoadSettings<WeaponSettings>();
+        var settings = _storageRepository.LoadSettings<WeaponSettings>();
         var services = new Dictionary<Type, object>
         {
             { typeof(IWeaponService), _weaponService }

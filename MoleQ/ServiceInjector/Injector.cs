@@ -19,18 +19,20 @@ public static class Injector
 {
     // Services
     public static IHotkeyService HotkeysService { get; private set; } = new HotkeysService(Path.Hotkeys);
+    public static SettingsService SettingsService { get; private set; } = new();
 
-    public static IPlayerService PlayerService { get; private set; }
+    public static IPlayerService PlayerService { get; private set; } = new PlayerService();
 
-    public static ITeleportService TeleportService { get; private set; }
+    public static ITeleportService TeleportService { get; private set; } = new TeleportService();
 
-    public static ISuperRunService SuperRunService { get; private set; }
+    public static ISuperRunService SuperRunService { get; private set; } = new SuperRunService();
 
-    public static ISuperPunchService SuperPunchService { get; private set; }
-    public static IVehicleService VehicleService { get; private set; }
-    public static IVehicleSpawnerService VehicleSpawnerService { get; private set; }
-    public static IWeaponService WeaponService { get; private set; }
-    public static ISettingsService SettingsService { get; private set; }
+    public static ISuperPunchService SuperPunchService { get; private set; } = new SuperPunchService();
+    public static IVehicleService VehicleService { get; private set; } = new VehicleService();
+    public static IVehicleSpawnerService VehicleSpawnerService { get; private set; } = new VehicleSpawnerService();
+
+    public static IWeaponService WeaponService { get; private set; } = new WeaponService();
+    // public static ISettingsService SettingsService { get; private set; }
 
 
     // Repositories
@@ -39,34 +41,11 @@ public static class Injector
     // Menu manager
     public static MenuManager MenuManager { get; private set; }
 
-    // Events
+    // // Events
     public static event Action ServicesInitialized;
 
-    public static void Initialize()
+    public static void InitializeMenus()
     {
-        /*
-         * Services
-         */
-
-        // Player
-        PlayerService = new PlayerService();
-        TeleportService = new TeleportService();
-        SuperRunService = new SuperRunService();
-        SuperPunchService = new SuperPunchService();
-
-        // Vehicle
-        VehicleService = new VehicleService();
-        VehicleSpawnerService = new VehicleSpawnerService();
-
-        // Weapon
-        WeaponService = new WeaponService();
-
-        // Settings
-        SettingsService = new SettingsService();
-
-        // Repositories
-
-        // Menu Manager
         MenuManager = new MenuManager();
     }
 

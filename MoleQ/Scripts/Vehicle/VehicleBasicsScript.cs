@@ -5,11 +5,10 @@ using GTA;
 using MoleQ.Constants;
 using MoleQ.Enums;
 using MoleQ.Exceptions;
-using MoleQ.Interfaces.Settings;
 using MoleQ.Interfaces.Vehicle;
 using MoleQ.Mappers;
+using MoleQ.Repositories;
 using MoleQ.ServiceInjector;
-using MoleQ.Services.Settings;
 using MoleQ.Settings;
 using MoleQ.UI.Notification;
 
@@ -17,13 +16,13 @@ namespace MoleQ.Scripts.Vehicle;
 
 public class VehicleBasicsScript : BaseScript
 {
-    private readonly IStorageService _storageService;
+    private readonly IStorageRepository _storageRepository;
     private readonly IVehicleService _vehicleService;
 
     public VehicleBasicsScript()
     {
         _vehicleService = Injector.VehicleService;
-        _storageService = new StorageService($"{Path.Settings}/Vehicle.json");
+        _storageRepository = new StorageRepository($"{Path.Settings}/Vehicle.json");
         _vehicleService.OnRepairVehicle += RepairVehicle;
         Tick += OnTick;
         KeyDown += OnKeyDown;
@@ -35,12 +34,12 @@ public class VehicleBasicsScript : BaseScript
         {
             { typeof(IVehicleService), _vehicleService }
         });
-        _storageService.SaveSettings(settings);
+        _storageRepository.SaveSettings(settings);
     }
 
     protected override void LoadSettings()
     {
-        var settings = _storageService.LoadSettings<VehicleSettings>();
+        var settings = _storageRepository.LoadSettings<VehicleSettings>();
         var services = new Dictionary<Type, object>
         {
             { typeof(IVehicleService), _vehicleService }
