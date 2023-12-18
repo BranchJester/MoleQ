@@ -16,6 +16,7 @@ public class WeaponAttachmentMenu : BaseMenu
     public WeaponAttachmentMenu(string menuName, IWeaponService weaponService) : base(menuName)
     {
         _weaponService = weaponService;
+        Width = 500;
         Shown += OnShown;
     }
 
@@ -80,6 +81,9 @@ public class WeaponAttachmentMenu : BaseMenu
                     // Activate the selected component.
                     selectedComponent.Active = true;
                 }
+                
+                currentWeapon.Ammo = currentWeapon.MaxAmmo;
+                currentWeapon.AmmoInClip = currentWeapon.MaxAmmoInClip;
             };
             Add(item);
         }
@@ -115,7 +119,7 @@ public class WeaponAttachmentMenu : BaseMenu
                 return "FlashLaser";
 
             case WeaponAttachmentPoint.GunRoot:
-                return "GunRoot";
+                return "Skin";
 
             case WeaponAttachmentPoint.TorchBulb:
                 return "TorchBulb";
