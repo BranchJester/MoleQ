@@ -15,7 +15,7 @@ public class SettingsMenu : BaseMenu
         SaveSettings();
         LoadSettings();
         AutoSave();
-        AutoLoad();
+        // AutoLoad();
     }
 
     private void AutoLoad()
