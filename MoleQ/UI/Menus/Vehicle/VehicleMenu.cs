@@ -48,11 +48,7 @@ public class VehicleMenu : BaseMenu
         var indestructibleBVehicle =
             new CustomNativeCheckboxItem(VehicleEnum.Indestructible,
                 HotkeysService.GetValueAsString(SectionEnum.Vehicle, VehicleEnum.Indestructible),
-                _vehicleService.Indestructible);
-        indestructibleBVehicle.CheckboxChanged += (_, _) =>
-        {
-            _vehicleService.Indestructible = indestructibleBVehicle.Checked;
-        };
+                _vehicleService.Indestructible, state => { _vehicleService.Indestructible = state; });
         _vehicleService.IndestructibleChanged += indestructible =>
         {
             indestructibleBVehicle.Checked = indestructible;

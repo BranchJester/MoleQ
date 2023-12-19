@@ -43,8 +43,8 @@ public class WeaponMenu : BaseMenu
     private void InfiniteAmmo()
     {
         var infiniteAmmo = new CustomNativeCheckboxItem(WeaponEnum.InfiniteAmmo,
-            HotkeysService.GetValueAsString(SectionEnum.Weapon, WeaponEnum.InfiniteAmmo), _weaponService.InfiniteAmmo);
-        infiniteAmmo.CheckboxChanged += (_, _) => { _weaponService.InfiniteAmmo = infiniteAmmo.Checked; };
+            HotkeysService.GetValueAsString(SectionEnum.Weapon, WeaponEnum.InfiniteAmmo), _weaponService.InfiniteAmmo,
+            state => { _weaponService.InfiniteAmmo = state; });
         _weaponService.InfiniteAmmoChanged += state =>
         {
             infiniteAmmo.Checked = state;
@@ -58,8 +58,8 @@ public class WeaponMenu : BaseMenu
     private void NoReload()
     {
         var noReload = new CustomNativeCheckboxItem(WeaponEnum.NoReload,
-            HotkeysService.GetValueAsString(SectionEnum.Weapon, WeaponEnum.NoReload), _weaponService.NoReload);
-        noReload.CheckboxChanged += (_, _) => { _weaponService.NoReload = noReload.Checked; };
+            HotkeysService.GetValueAsString(SectionEnum.Weapon, WeaponEnum.NoReload), _weaponService.NoReload,
+            state => { _weaponService.NoReload = state; });
         noReload.Enabled = _weaponService.InfiniteAmmo;
         _weaponService.NoReloadChanged += state =>
         {

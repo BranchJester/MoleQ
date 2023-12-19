@@ -71,12 +71,7 @@ public class PlayerMenu : BaseMenu
     {
         var lockWantedLevel = new CustomNativeCheckboxItem(PlayerEnum.LockWantedLevel,
             HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.LockWantedLevel),
-            _playerService.LockWantedLevel);
-        lockWantedLevel.CheckboxChanged += (_, _) =>
-        {
-            _playerService.LockWantedLevel = lockWantedLevel.Checked;
-            Notify.CheckboxMessage("Wanted Level Locked", lockWantedLevel.Checked);
-        };
+            _playerService.LockWantedLevel, state => _playerService.LockWantedLevel = state);
         _playerService.LockWantedLevelChanged += state =>
         {
             lockWantedLevel.Checked = state;
@@ -88,15 +83,8 @@ public class PlayerMenu : BaseMenu
     private void Invincible()
     {
         var invincible = new CustomNativeCheckboxItem(PlayerEnum.Invincible,
-            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.Invincible), _playerService.Invincible)
-        {
-            Checked = _playerService.Invincible
-        };
-        invincible.CheckboxChanged += (_, _) =>
-        {
-            _playerService.Invincible = invincible.Checked;
-            Notify.CheckboxMessage("Invincibility", invincible.Checked);
-        };
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.Invincible), _playerService.Invincible,
+            state => _playerService.Invincible = state);
         _playerService.InvincibleChanged += state =>
         {
             invincible.Checked = state;
@@ -109,15 +97,7 @@ public class PlayerMenu : BaseMenu
     {
         var infiniteStamina = new CustomNativeCheckboxItem(PlayerEnum.InfiniteStamina,
             HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteStamina),
-            _playerService.InfiniteStamina)
-        {
-            Checked = _playerService.InfiniteStamina
-        };
-        infiniteStamina.CheckboxChanged += (_, _) =>
-        {
-            _playerService.InfiniteStamina = infiniteStamina.Checked;
-            Notify.CheckboxMessage("Infinite Stamina", infiniteStamina.Checked);
-        };
+            _playerService.InfiniteStamina, state => _playerService.InfiniteStamina = state);
         _playerService.InfiniteStaminaChanged += state =>
         {
             infiniteStamina.Checked = state;
@@ -130,8 +110,7 @@ public class PlayerMenu : BaseMenu
     {
         var infiniteBreath = new CustomNativeCheckboxItem(PlayerEnum.InfiniteBreath,
             HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteBreath),
-            _playerService.InfiniteBreath);
-        infiniteBreath.CheckboxChanged += (_, _) => { _playerService.InfiniteBreath = infiniteBreath.Checked; };
+            _playerService.InfiniteBreath, state => _playerService.InfiniteBreath = state);
         _playerService.InfiniteBreathChanged += state =>
         {
             infiniteBreath.Checked = state;
@@ -144,11 +123,7 @@ public class PlayerMenu : BaseMenu
     {
         var infiniteSpecialAbility = new CustomNativeCheckboxItem(PlayerEnum.InfiniteSpecialAbility,
             HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.InfiniteSpecialAbility),
-            _playerService.InfiniteSpecialAbility);
-        infiniteSpecialAbility.CheckboxChanged += (_, _) =>
-        {
-            _playerService.InfiniteSpecialAbility = infiniteSpecialAbility.Checked;
-        };
+            _playerService.InfiniteSpecialAbility, state => _playerService.InfiniteSpecialAbility = state);
         _playerService.InfiniteSpecialAbilityChanged += state =>
         {
             infiniteSpecialAbility.Checked = state;
@@ -161,11 +136,8 @@ public class PlayerMenu : BaseMenu
     {
         var superJump =
             new CustomNativeCheckboxItem(PlayerEnum.SuperJump,
-                HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.SuperJump), _playerService.SuperJump)
-            {
-                Checked = _playerService.SuperJump
-            };
-        superJump.CheckboxChanged += (_, _) => { _playerService.SuperJump = superJump.Checked; };
+                HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.SuperJump), _playerService.SuperJump,
+                state => _playerService.SuperJump = state);
         _playerService.SuperJumpChanged += state =>
         {
             superJump.Checked = state;
@@ -201,8 +173,8 @@ public class PlayerMenu : BaseMenu
     private void SuperPunch()
     {
         var superPunch = new CustomNativeCheckboxItem(PlayerEnum.SuperPunch,
-            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.SuperPunch), _superPunchService.SuperPunch);
-        superPunch.CheckboxChanged += (_, _) => { _superPunchService.SuperPunch = superPunch.Checked; };
+            HotkeysService.GetValueAsString(SectionEnum.Player, PlayerEnum.SuperPunch), _superPunchService.SuperPunch,
+            state => _superPunchService.SuperPunch = state);
         _superPunchService.SuperPunchChanged += state =>
         {
             superPunch.Checked = state;

@@ -21,8 +21,8 @@ public class SettingsMenu : BaseMenu
     private void AutoLoad()
     {
         var autoLoad = new CustomNativeCheckboxItem(SettingsEnum.AutoLoad,
-            HotkeysService.GetValueAsString(SectionEnum.Settings, SettingsEnum.AutoLoad), _settingsService.AutoLoad);
-        autoLoad.Activated += (_, _) => { _settingsService.AutoLoad = autoLoad.Checked; };
+            HotkeysService.GetValueAsString(SectionEnum.Settings, SettingsEnum.AutoLoad), _settingsService.AutoLoad,
+            state => { _settingsService.AutoLoad = state; });
         _settingsService.AutoLoadChanged += state => { autoLoad.Checked = state; };
         Add(autoLoad);
     }
@@ -30,8 +30,8 @@ public class SettingsMenu : BaseMenu
     private void AutoSave()
     {
         var autoSave = new CustomNativeCheckboxItem(SettingsEnum.AutoSave,
-            HotkeysService.GetValueAsString(SectionEnum.Settings, SettingsEnum.AutoSave), _settingsService.AutoSave);
-        autoSave.Activated += (_, _) => { _settingsService.AutoSave = autoSave.Checked; };
+            HotkeysService.GetValueAsString(SectionEnum.Settings, SettingsEnum.AutoSave), _settingsService.AutoSave,
+            state => { _settingsService.AutoSave = state; });
         _settingsService.AutoSaveChanged += state => { autoSave.Checked = state; };
         Add(autoSave);
     }

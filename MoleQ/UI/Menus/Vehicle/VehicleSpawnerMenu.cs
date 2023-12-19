@@ -30,8 +30,7 @@ public class VehicleSpawnerMenu : BaseMenu
     {
         var warpInSpawned = new CustomNativeCheckboxItem(VehicleSpawnerEnum.WarpInSpawned,
             HotkeysService.GetValueAsString(SectionEnum.VehicleSpawner, VehicleSpawnerEnum.WarpInSpawned),
-            _vehicleSpawnerService.WarpInSpawned);
-        warpInSpawned.CheckboxChanged += (_, _) => { _vehicleSpawnerService.WarpInSpawned = warpInSpawned.Checked; };
+            _vehicleSpawnerService.WarpInSpawned, state => { _vehicleSpawnerService.WarpInSpawned = state; });
         _vehicleSpawnerService.WarpInSpawnedChanged += warpInSpawnedChanged =>
         {
             warpInSpawned.Checked = warpInSpawnedChanged;
@@ -44,8 +43,7 @@ public class VehicleSpawnerMenu : BaseMenu
     {
         var enginesRunning = new CustomNativeCheckboxItem(VehicleSpawnerEnum.EnginesRunning,
             HotkeysService.GetValueAsString(SectionEnum.VehicleSpawner, VehicleSpawnerEnum.EnginesRunning),
-            _vehicleSpawnerService.EnginesRunning);
-        enginesRunning.CheckboxChanged += (_, _) => { _vehicleSpawnerService.EnginesRunning = enginesRunning.Checked; };
+            _vehicleSpawnerService.EnginesRunning, state => { _vehicleSpawnerService.EnginesRunning = state; });
         _vehicleSpawnerService.EnginesRunningChanged += enginesRunningChanged =>
         {
             enginesRunning.Checked = enginesRunningChanged;
