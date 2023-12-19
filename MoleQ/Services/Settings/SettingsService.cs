@@ -1,8 +1,9 @@
 ﻿using System;
+using MoleQ.Interfaces;
 
 namespace MoleQ.Services.Settings;
 
-public class SettingsService
+public class SettingsService : ISettingsService
 {
     private bool _autoLoad;
     private bool _autoSave;

@@ -1,5 +1,6 @@
 ﻿using System;
 using MoleQ.Constants;
+using MoleQ.Interfaces;
 using MoleQ.Interfaces.Player;
 using MoleQ.Interfaces.Settings;
 using MoleQ.Interfaces.Vehicle;
@@ -19,7 +20,7 @@ public static class Injector
 {
     // Services
     public static IHotkeyService HotkeysService { get; private set; } = new HotkeysService(Path.Hotkeys);
-    public static SettingsService SettingsService { get; private set; } = new();
+    public static ISettingsService SettingsService { get; private set; } = new SettingsService();
 
     public static IPlayerService PlayerService { get; private set; } = new PlayerService();
 

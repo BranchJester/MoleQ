@@ -8,6 +8,10 @@ namespace MoleQ.Scripts;
 public class SettingsScript : BaseScript
 {
     private readonly IStorageRepository _storageRepository = new StorageRepository($"{Path.Settings}/Settings.json");
+    
+    public SettingsScript()
+    {
+    }
 
     protected override void SaveSettings()
     {

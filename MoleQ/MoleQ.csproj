@@ -72,6 +72,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Enums\SettingsEnum.cs"/>
+        <Compile Include="Interfaces\ISettingsService.cs" />
         <Compile Include="Managers\MenuManager.cs"/>
         <Compile Include="Mappers\ServiceSettingsMapper.cs"/>
         <Compile Include="Repositories\IStorageRepository.cs"/>

@@ -2,10 +2,13 @@
 using System.Linq;
 using System.Windows.Forms;
 using GTA;
+using MoleQ.Constants;
 using MoleQ.Enums;
+using MoleQ.Interfaces;
 using MoleQ.Interfaces.Settings;
+using MoleQ.Repositories;
 using MoleQ.ServiceInjector;
-using MoleQ.Services.Settings;
+using MoleQ.Settings;
 using MoleQ.UI.Notification;
 using Control = System.Windows.Forms.Control;
 
@@ -17,14 +20,21 @@ namespace MoleQ.Scripts;
 public class BaseScript : Script
 {
     protected readonly IHotkeyService HotkeysService = Injector.HotkeysService;
-    protected readonly SettingsService SettingsService = Injector.SettingsService;
+
+    protected readonly ISettingsService SettingsService = Injector.SettingsService;
 
     public BaseScript()
     {
         KeyDown += OnKeyDown;
         SettingsService.SaveSettingsActivated += SaveSettings;
         SettingsService.LoadSettingsActivated += LoadSettings;
+        Tick += OnTick;
         Aborted += OnAbort;
+    }
+    private void OnTick(object sender, EventArgs e)
+    {
+        if (SettingsService.AutoSave && Game.IsPaused)
+            SaveSettings();
     }
 
     private void OnAbort(object sender, EventArgs e)

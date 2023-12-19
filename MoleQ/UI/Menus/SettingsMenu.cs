@@ -1,6 +1,5 @@
 ﻿using MoleQ.Enums;
-using MoleQ.ServiceInjector;
-using MoleQ.Services.Settings;
+using MoleQ.Interfaces;
 using MoleQ.UI.Items;
 using MoleQ.UI.Menus.Abstract;
 
@@ -8,10 +7,11 @@ namespace MoleQ.UI.Menus;
 
 public class SettingsMenu : BaseMenu
 {
-    private readonly SettingsService _settingsService = Injector.SettingsService;
+    private readonly ISettingsService _settingsService;
 
-    public SettingsMenu(string menuName) : base(menuName)
+    public SettingsMenu(string menuName, ISettingsService settingsService) : base(menuName)
     {
+        _settingsService = settingsService;
         SaveSettings();
         LoadSettings();
         AutoSave();
