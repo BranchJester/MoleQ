@@ -1,11 +1,11 @@
 ﻿using MoleQ.Application.ServiceInjector;
-using MoleQ.Application.UI.Items;
-using MoleQ.Application.UI.Menus.Abstract;
 using MoleQ.Application.UI.Notification;
 using MoleQ.Core.Application.Interfaces.Weapon;
 using MoleQ.Core.Domain.Enums;
+using MoleQ.UI.Items;
+using MoleQ.UI.Menus.Abstract;
 
-namespace MoleQ.Application.UI.Menus.Weapon;
+namespace MoleQ.UI.Menus.Weapon;
 
 public class WeaponMenu : BaseMenu
 {

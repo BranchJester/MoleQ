@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using MoleQ.Application.ServiceInjector;
 using MoleQ.Core.Domain.Enums;
-using MainMenu = MoleQ.Application.UI.Menus.MainMenu;
+using MainMenu = MoleQ.UI.Menus.MainMenu;
 
 namespace MoleQ.Application.Scripts;
 

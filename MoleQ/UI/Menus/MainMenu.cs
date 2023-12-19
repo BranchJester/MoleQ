@@ -1,7 +1,7 @@
 ﻿using MoleQ.Application.ServiceInjector;
-using MoleQ.Application.UI.Menus.Abstract;
+using MoleQ.UI.Menus.Abstract;
 
-namespace MoleQ.Application.UI.Menus;
+namespace MoleQ.UI.Menus;
 
 public class MainMenu : BaseMenu
 {

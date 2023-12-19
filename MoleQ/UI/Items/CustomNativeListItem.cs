@@ -2,7 +2,7 @@
 using LemonUI.Menus;
 using MoleQ.Application.Extensions;
 
-namespace MoleQ.Application.UI.Items;
+namespace MoleQ.UI.Items;
 
 public class CustomNativeListItem<T> : NativeListItem<T>
 {

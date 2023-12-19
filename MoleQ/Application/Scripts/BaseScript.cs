@@ -4,12 +4,9 @@ using System.Windows.Forms;
 using GTA;
 using MoleQ.Application.ServiceInjector;
 using MoleQ.Application.UI.Notification;
-using MoleQ.Constants;
 using MoleQ.Core.Application.Interfaces;
 using MoleQ.Core.Application.Interfaces.Settings;
 using MoleQ.Core.Domain.Enums;
-using MoleQ.Core.Domain.Settings;
-using MoleQ.Infrastructure.Repositories;
 using Control = System.Windows.Forms.Control;
 
 namespace MoleQ.Application.Scripts;
@@ -23,8 +20,6 @@ public class BaseScript : Script
 
     protected readonly ISettingsService SettingsService = Injector.SettingsService;
 
-    protected readonly SettingsSettings SettingsStorage =
-        new StorageRepository($"{Path.Settings}/Settings.json").LoadSettings<SettingsSettings>();
 
     public BaseScript()
     {

@@ -1,10 +1,10 @@
 ﻿using LemonUI;
 using LemonUI.Menus;
 using MoleQ.Application.ServiceInjector;
-using MoleQ.Application.UI.Menus;
-using MoleQ.Application.UI.Menus.Player;
-using MoleQ.Application.UI.Menus.Vehicle;
-using MoleQ.Application.UI.Menus.Weapon;
+using MoleQ.UI.Menus;
+using MoleQ.UI.Menus.Player;
+using MoleQ.UI.Menus.Vehicle;
+using MoleQ.UI.Menus.Weapon;
 
 namespace MoleQ.Application.Managers;
 

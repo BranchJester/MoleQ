@@ -7,7 +7,7 @@ using MoleQ.Application.Extensions;
 using MoleQ.Application.ServiceInjector;
 using MoleQ.Core.Application.Interfaces.Settings;
 
-namespace MoleQ.Application.UI.Menus.Abstract;
+namespace MoleQ.UI.Menus.Abstract;
 
 public abstract class BaseMenu : NativeMenu
 {

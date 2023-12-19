@@ -1,11 +1,11 @@
-﻿using MoleQ.Application.UI.Items;
-using MoleQ.Application.UI.Menus.Abstract;
-using MoleQ.Application.UI.Notification;
+﻿using MoleQ.Application.UI.Notification;
 using MoleQ.Core.Application.Interfaces.Player;
 using MoleQ.Core.Domain.Enums;
 using MoleQ.Core.Domain.Exceptions;
+using MoleQ.UI.Items;
+using MoleQ.UI.Menus.Abstract;
 
-namespace MoleQ.Application.UI.Menus.Player;
+namespace MoleQ.UI.Menus.Player;
 
 public class TeleportMenu : BaseMenu
 {

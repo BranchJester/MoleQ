@@ -1,9 +1,9 @@
-﻿using MoleQ.Application.UI.Items;
-using MoleQ.Application.UI.Menus.Abstract;
-using MoleQ.Core.Application.Interfaces;
+﻿using MoleQ.Core.Application.Interfaces;
 using MoleQ.Core.Domain.Enums;
+using MoleQ.UI.Items;
+using MoleQ.UI.Menus.Abstract;
 
-namespace MoleQ.Application.UI.Menus;
+namespace MoleQ.UI.Menus;
 
 public class SettingsMenu : BaseMenu
 {
@@ -15,7 +15,7 @@ public class SettingsMenu : BaseMenu
         SaveSettings();
         LoadSettings();
         AutoSave();
-        // AutoLoad();
+        // AutoLoad(); -- TODO: Fix AutoLoad
     }
 
     private void AutoLoad()

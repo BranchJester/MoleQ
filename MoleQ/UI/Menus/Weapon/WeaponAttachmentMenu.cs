@@ -4,10 +4,10 @@ using System.Linq;
 using GTA;
 using LemonUI.Menus;
 using MoleQ.Application.Extensions;
-using MoleQ.Application.UI.Menus.Abstract;
 using MoleQ.Core.Application.Interfaces.Weapon;
+using MoleQ.UI.Menus.Abstract;
 
-namespace MoleQ.Application.UI.Menus.Weapon;
+namespace MoleQ.UI.Menus.Weapon;
 
 public class WeaponAttachmentMenu : BaseMenu
 {

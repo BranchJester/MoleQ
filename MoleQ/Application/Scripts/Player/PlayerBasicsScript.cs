@@ -16,8 +16,6 @@ namespace MoleQ.Application.Scripts.Player;
 public class PlayerBasicsScript : BaseScript
 {
     private readonly IPlayerService _playerService;
-
-    // private readonly ISettingsService _settingsService;
     private readonly StorageRepository _storageRepository;
     private readonly ISuperPunchService _superPunchService;
     private readonly ISuperRunService _superRunService;

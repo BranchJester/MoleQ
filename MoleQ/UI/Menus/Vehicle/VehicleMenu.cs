@@ -1,12 +1,12 @@
 ﻿using MoleQ.Application.ServiceInjector;
-using MoleQ.Application.UI.Items;
-using MoleQ.Application.UI.Menus.Abstract;
 using MoleQ.Application.UI.Notification;
 using MoleQ.Core.Application.Interfaces.Vehicle;
 using MoleQ.Core.Domain.Enums;
 using MoleQ.Core.Domain.Exceptions;
+using MoleQ.UI.Items;
+using MoleQ.UI.Menus.Abstract;
 
-namespace MoleQ.Application.UI.Menus.Vehicle;
+namespace MoleQ.UI.Menus.Vehicle;
 
 public class VehicleMenu : BaseMenu
 {
