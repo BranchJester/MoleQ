@@ -1,6 +1,5 @@
 ﻿using MoleQ.Constants;
 using MoleQ.Repositories;
-using MoleQ.Services.Settings;
 using MoleQ.Settings;
 
 namespace MoleQ.Scripts;
@@ -8,10 +7,6 @@ namespace MoleQ.Scripts;
 public class SettingsScript : BaseScript
 {
     private readonly IStorageRepository _storageRepository = new StorageRepository($"{Path.Settings}/Settings.json");
-    
-    public SettingsScript()
-    {
-    }
 
     protected override void SaveSettings()
     {

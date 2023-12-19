@@ -1,6 +1,5 @@
 ﻿using System;
 using GTA;
-using LemonUI.Menus;
 using MoleQ.Extensions;
 using MoleQ.Interfaces.Vehicle;
 using MoleQ.UI.Items;
@@ -11,9 +10,11 @@ namespace MoleQ.UI.Menus.Vehicle;
 
 public class VehicleClassMenu : BaseMenu
 {
-    private readonly IVehicleSpawnerService _vehicleSpawnerService;
     private readonly VehicleClass _vehicleClass;
-    public VehicleClassMenu(string menuName, IVehicleSpawnerService vehicleSpawnerService, VehicleClass vehicleClass) : base(menuName)
+    private readonly IVehicleSpawnerService _vehicleSpawnerService;
+
+    public VehicleClassMenu(string menuName, IVehicleSpawnerService vehicleSpawnerService, VehicleClass vehicleClass) :
+        base(menuName)
     {
         _vehicleSpawnerService = vehicleSpawnerService;
         _vehicleClass = vehicleClass;

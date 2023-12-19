@@ -45,12 +45,12 @@ public static class Injector
     // // Events
     public static event Action ServicesInitialized;
 
-    public static void InitializeMenus()
+    public static void InitializeMenuManager()
     {
         MenuManager = new MenuManager();
     }
 
-    public static void InvokeInitialize()
+    public static void InvokeServices()
     {
         ServicesInitialized?.Invoke();
     }

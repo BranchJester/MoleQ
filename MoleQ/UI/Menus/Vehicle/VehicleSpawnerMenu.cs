@@ -58,7 +58,8 @@ public class VehicleSpawnerMenu : BaseMenu
     {
         foreach (VehicleClass vehicleClass in Enum.GetValues(typeof(VehicleClass)))
         {
-            var vehicleClassMenu = new VehicleClassMenu(vehicleClass.ToPrettyString(), _vehicleSpawnerService, vehicleClass);
+            var vehicleClassMenu =
+                new VehicleClassMenu(vehicleClass.ToPrettyString(), _vehicleSpawnerService, vehicleClass);
             Injector.MenuManager.MenuPool.Add(vehicleClassMenu);
             AddSubMenu(vehicleClassMenu, "Menu");
         }

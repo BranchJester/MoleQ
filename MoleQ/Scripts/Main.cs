@@ -12,15 +12,15 @@ public class Main : BaseScript
 
     public Main()
     {
-        // InitializeMenus must be called before creating menus.
-        Injector.InitializeMenus();
-        
+        // We need to initialize the menu manager before using it.
+        Injector.InitializeMenuManager();
+
         var menuManager = Injector.MenuManager;
         _mainMenu = menuManager.MainMenu;
 
         // Invoke the initialize method to initialize all services and repositories.
         // When this is called, all services and repositories are initialized.
-        Injector.InvokeInitialize();
+        Injector.InvokeServices();
 
         Tick += OnTick;
         KeyDown += OnKeyDown;

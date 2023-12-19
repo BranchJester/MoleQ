@@ -27,14 +27,10 @@ public class PlayerBasicsScript : BaseScript
         _playerService = Injector.PlayerService;
         _superPunchService = Injector.SuperPunchService;
         _superRunService = Injector.SuperRunService;
-        // _settingsService = Injector.SettingsService;
         _storageRepository = new StorageRepository($"{Path.Settings}/Player.json");
         _playerService.FixPlayerActivated += FixPlayer;
         _playerService.WantedLevelChanged += ChangeWantedLevel;
         _playerService.InfiniteBreathChanged += InfiniteBreath;
-
-        // Some code smells here --should be refactored
-        // _settingsService.SaveSettingsActivated += SaveSettings;
 
         Tick += OnTick;
         KeyDown += OnKeyDown;

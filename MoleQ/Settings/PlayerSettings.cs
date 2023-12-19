@@ -34,7 +34,7 @@ public class PlayerSettings : IServiceSettings
 
         if (services.TryGetValue(typeof(ISuperRunService), out var superRunService))
             ((ISuperRunService)superRunService).SuperRun = SuperRun;
-        
+
         if (services.TryGetValue(typeof(ISuperPunchService), out var superPunchService))
             ((ISuperPunchService)superPunchService).SuperPunch = SuperPunch;
     }
@@ -52,10 +52,10 @@ public class PlayerSettings : IServiceSettings
             InfiniteSpecialAbility = ((IPlayerService)playerService).InfiniteSpecialAbility;
             SuperJump = ((IPlayerService)playerService).SuperJump;
         }
-        
+
         if (services.TryGetValue(typeof(ISuperRunService), out var superRunService))
             SuperRun = ((ISuperRunService)superRunService).SuperRun;
-        
+
         if (services.TryGetValue(typeof(ISuperPunchService), out var superPunchService))
             SuperPunch = ((ISuperPunchService)superPunchService).SuperPunch;
     }

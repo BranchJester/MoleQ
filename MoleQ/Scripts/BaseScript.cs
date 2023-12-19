@@ -23,6 +23,9 @@ public class BaseScript : Script
 
     protected readonly ISettingsService SettingsService = Injector.SettingsService;
 
+    protected readonly SettingsSettings SettingsStorage =
+        new StorageRepository($"{Path.Settings}/Settings.json").LoadSettings<SettingsSettings>();
+
     public BaseScript()
     {
         KeyDown += OnKeyDown;
@@ -31,6 +34,7 @@ public class BaseScript : Script
         Tick += OnTick;
         Aborted += OnAbort;
     }
+
     private void OnTick(object sender, EventArgs e)
     {
         if (SettingsService.AutoSave && Game.IsPaused)

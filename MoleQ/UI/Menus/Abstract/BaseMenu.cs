@@ -23,7 +23,8 @@ public abstract class BaseMenu : NativeMenu
         Shown += OnShown;
         Closed += OnClosed;
         HotkeysService.HotkeyChanged += OnHotkeyChanged;
-        Injector.ServicesInitialized += InitializeItems;
+
+        Injector.ServicesInitialized += InitializeItems; // When all services are initialized, initialize the items.
     }
 
     public string MenuName { get; set; }

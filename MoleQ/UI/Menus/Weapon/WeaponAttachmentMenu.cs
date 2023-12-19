@@ -81,7 +81,7 @@ public class WeaponAttachmentMenu : BaseMenu
                     // Activate the selected component.
                     selectedComponent.Active = true;
                 }
-                
+
                 currentWeapon.Ammo = currentWeapon.MaxAmmo;
                 currentWeapon.AmmoInClip = currentWeapon.MaxAmmoInClip;
             };
