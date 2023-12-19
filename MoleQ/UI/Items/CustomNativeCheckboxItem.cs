@@ -6,8 +6,6 @@ namespace MoleQ.UI.Items;
 
 public class CustomNativeCheckboxItem : NativeCheckboxItem
 {
-    public delegate void CheckboxChangedEventHandler(object sender, bool newState);
-
     public CustomNativeCheckboxItem(Enum @enum, string hotKey, bool check, Action<bool> checkboxChangedHandler = null)
         : base(@enum.ToPrettyString(), @enum.GetDescription(), check)
     {
@@ -16,6 +14,6 @@ public class CustomNativeCheckboxItem : NativeCheckboxItem
         else
             Description += $"\n\n~g~Hotkey: {hotKey}";
 
-        CheckboxChanged += (_, newState) => checkboxChangedHandler?.Invoke(Checked);
+        CheckboxChanged += (_, _) => checkboxChangedHandler?.Invoke(Checked);
     }
 }
